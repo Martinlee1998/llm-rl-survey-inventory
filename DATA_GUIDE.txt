@@ -1,0 +1,116 @@
+Online Resource 1
+
+Article: Enhancing Reinforcement Learning with Large Language Models:
+A Survey of Grounded Reward, Policy, and Environment Interfaces
+Journal: Artificial Intelligence Review
+Author: Yanqi Li, University of Southern Queensland
+Correspondence: Yanqi.Li@unisq.edu.au
+Prepared: 21 October 2026
+
+CONTENTS
+
+public_sources.csv / public_sources.json
+    One record for each of the 52 sources cited in the current manuscript:
+    37 primary method or empirical papers, fourteen related surveys, and one
+    foundational theory paper. Each record identifies the bibliographic work,
+    the version actually consulted, public access links, subject domain, role,
+    and current manuscript sections.
+
+evidence_matrix.csv / evidence_matrix.json
+    82 source-linked records connecting particular claims to original-paper
+    pages, figures, tables, equations, protocols, and interpretive limits.
+    A source may support more than one record. These are evidence records,
+    not 82 independent experiments.
+
+math/
+    The extended analytical note, its source, references, reproduction code,
+    and numerical results. See math/README.txt for instructions and scope.
+
+The CSV and JSON files contain the same records and field values. CSV files
+use UTF-8 with a byte-order mark for spreadsheet compatibility; JSON files
+use UTF-8 and contain an array of objects. They can be read without software
+specific to the authoring environment. Public links replace local file paths.
+
+HOW TO READ THE SOURCE REGISTER
+
+citation_key links a source to the manuscript bibliography and evidence table.
+bibliographic_identity describes its publication; read_version and read_url
+identify the text consulted. A formally published work may have been read in
+an identified author manuscript. This distinction is explicit, including for
+Cao's survey. additional_read_urls is populated only when another version
+supplies evidence used here. For Robometer, formal RSS pages and extended
+arXiv pages are distinguished. acceptance_evidence_url supplies the official
+NeurIPS 2026 evidence for SOLE-R1, whose technical text was read as arXiv v2. ManipGen uses its identified
+ICRA 2025 accepted author version, as stated on the official arXiv record.
+
+current_sections records section labels or source-file stems from the current
+manuscript. These identify locations, not local filesystem paths.
+
+HOW TO READ THE EVIDENCE MATRIX
+
+manuscript_location identifies the section and subsection; manuscript_anchor
+is a short phrase locating the relevant passage. current_claim states the
+specific point supported. source_locator and pdf_pages identify its basis.
+
+comparison, conditions_held, intervention_or_mechanism, source_observation,
+and training_budget_and_repetition record the comparison and its protocol.
+interpretive_boundary states the limit that matters for the inference. An
+empty field means it is not applicable or not established in this record;
+it does not mean that a condition was experimentally controlled.
+
+Pages are 1-based physical PDF pages unless a record explicitly says otherwise.
+Special cases:
+- LIMEN: the RLJ cover is PDF page 1; the main paper starts on PDF page 2.
+- ExploRLLM: two institutional cover pages precede the paper; PDF page 3 is
+  paper page 1 and printed page 9011.
+- LgTS: PDF page 1 is printed page 1736.
+- CALM: PDF page 1 is printed page 8736.
+- Robometer: the record names the formal RSS or extended arXiv version.
+
+Source observations and review-authored analysis have different roles.
+Records E056-E058 identify source formulas used by the analytical comparisons;
+the constructions themselves belong to this review, not to the cited papers.
+Related-survey records E059-E067 and E072 establish prior coverage and attribution.
+They are not additional primary experiments supporting a method comparison.
+E068-E069 document existing normalization analyses and their remedies;
+E070 attributes the planning/locality mechanism to ManipGen, while E071
+records its separate initialization-region ablation. E073 records PSL's
+negative control adding wrist inputs to global-view baseline observations.
+E074 records EXIMO's separate offline-to-online countercase with unguided
+base inputs and action-preserving residual relabeling. E075 and E077-E079 record EnvGen controls and the Craftax relation,
+allocation, and objective-weight comparisons. E080-E081 attribute earlier
+environment and curriculum syntheses. E082 records MaestroMotif's episode-
+organization comparison, and E083 records WebRL's task/replay controls.
+E085-E086 attribute prior
+on-policy-distillation synthesis and local gradient-alignment analysis.
+E087-E088 record SOAR's target-improvement feedback and its equal-size
+teacher-sampling comparison with fresh students on held-out questions.
+E089 attributes related analysis of data exposure, adaptation, and component
+evaluation to the October 2026 Physical AI survey.
+These records do not turn cross-paper comparisons into shared experiments.
+Evidence IDs are stable identifiers, so their numbering is not contiguous.
+E024, E034, E035, E047, E076, and E084 were retired when their manuscript contrasts were removed;
+E046 was retired in an earlier revision. Their absence does not mean missing data.
+
+READING ACROSS PAPERS
+
+Guidance quality and learning utility:
+    E001-E012 and E029-E033.
+Objectives, candidate support, and updates:
+    E013-E019, E028, E050-E051, E054-E058, and E068-E069.
+Experience and the receiving controller:
+    E010, E020-E022, E037-E038, E052-E053, and E074.
+Skill handovers:
+    E040-E041, E070-E071, and E073.
+Task relations and curriculum use:
+    E023, E026, E042-E043, E075, E077-E079, E082, and E087-E088.
+Retained competence, reusable resources, and transfer tests:
+    E025-E027, E044-E045, E048-E049, and E083.
+Prior surveys and the scope of the present contribution:
+    E059-E067, E072, E080-E081, E085-E086, and E089.
+
+The register documents the evidence used in this manuscript. It is not an
+exhaustive field bibliography, a pooled effect-size dataset, or a count of
+independent replications. Within-paper controls are recorded separately from
+the review's cross-paper interpretation. Training budgets, denominators,
+repetition counts, and the object transferred remain specific to each study.

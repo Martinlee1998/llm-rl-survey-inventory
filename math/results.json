@@ -1,0 +1,3158 @@
+{
+  "kind": "Analytical constructions, not original-paper training results",
+  "ARM_FM": {
+    "gamma": {
+      "fraction": "99/100",
+      "decimal": 0.99
+    },
+    "intermediate_bonus": {
+      "fraction": "1/5",
+      "decimal": 0.2
+    },
+    "direct": {
+      "task": {
+        "fraction": "1",
+        "decimal": 1.0
+      },
+      "machine": {
+        "fraction": "1",
+        "decimal": 1.0
+      },
+      "additive": {
+        "fraction": "2",
+        "decimal": 2.0
+      }
+    },
+    "delayed": {
+      "task": {
+        "fraction": "99/100",
+        "decimal": 0.99
+      },
+      "machine": {
+        "fraction": "119/100",
+        "decimal": 1.19
+      },
+      "additive": {
+        "fraction": "109/50",
+        "decimal": 2.18
+      }
+    },
+    "RM_only_reversal_threshold": {
+      "fraction": "1/100",
+      "decimal": 0.01
+    },
+    "additive_reversal_threshold": {
+      "fraction": "1/50",
+      "decimal": 0.02
+    }
+  },
+  "SWE_RM": {
+    "p": [
+      {
+        "fraction": "1/10",
+        "decimal": 0.1
+      },
+      {
+        "fraction": "3/5",
+        "decimal": 0.6
+      },
+      {
+        "fraction": "3/10",
+        "decimal": 0.3
+      }
+    ],
+    "c": [
+      {
+        "fraction": "1",
+        "decimal": 1.0
+      },
+      {
+        "fraction": "1",
+        "decimal": 1.0
+      },
+      {
+        "fraction": "0",
+        "decimal": 0.0
+      }
+    ],
+    "r": [
+      {
+        "fraction": "1",
+        "decimal": 1.0
+      },
+      {
+        "fraction": "2/3",
+        "decimal": 0.6666666666666666
+      },
+      {
+        "fraction": "2/3",
+        "decimal": 0.6666666666666666
+      }
+    ],
+    "success_gradient": [
+      {
+        "fraction": "3/100",
+        "decimal": 0.03
+      },
+      {
+        "fraction": "9/50",
+        "decimal": 0.18
+      },
+      {
+        "fraction": "-21/100",
+        "decimal": -0.21
+      }
+    ],
+    "score_gradient": [
+      {
+        "fraction": "3/100",
+        "decimal": 0.03
+      },
+      {
+        "fraction": "-1/50",
+        "decimal": -0.02
+      },
+      {
+        "fraction": "-1/100",
+        "decimal": -0.01
+      }
+    ],
+    "score_dot_score": {
+      "fraction": "7/5000",
+      "decimal": 0.0014
+    },
+    "success_dot_score": {
+      "fraction": "-3/5000",
+      "decimal": -0.0006
+    },
+    "conditional_covariance": [
+      {
+        "fraction": "0",
+        "decimal": 0.0
+      },
+      {
+        "fraction": "1/5",
+        "decimal": 0.2
+      },
+      {
+        "fraction": "-1/5",
+        "decimal": -0.2
+      }
+    ],
+    "GSPO_groups": {
+      "2": {
+        "kappa": 0.09,
+        "expected_gradient": [
+          0.09,
+          -0.06,
+          -0.03
+        ],
+        "success_derivative": -0.0018,
+        "no_std_gradient": [
+          {
+            "fraction": "3/200",
+            "decimal": 0.015
+          },
+          {
+            "fraction": "-1/100",
+            "decimal": -0.01
+          },
+          {
+            "fraction": "-1/200",
+            "decimal": -0.005
+          }
+        ],
+        "no_std_success_derivative": {
+          "fraction": "-3/10000",
+          "decimal": -0.0003
+        },
+        "count_states": 6
+      },
+      "8": {
+        "kappa": 0.20949201468964576,
+        "expected_gradient": [
+          0.20949201468964576,
+          -0.1396613431264305,
+          -0.06983067156321525
+        ],
+        "success_derivative": -0.004189840293792916,
+        "no_std_gradient": [
+          {
+            "fraction": "21/800",
+            "decimal": 0.02625
+          },
+          {
+            "fraction": "-7/400",
+            "decimal": -0.0175
+          },
+          {
+            "fraction": "-7/800",
+            "decimal": -0.00875
+          }
+        ],
+        "no_std_success_derivative": {
+          "fraction": "-21/40000",
+          "decimal": -0.000525
+        },
+        "count_states": 45
+      },
+      "16": {
+        "kappa": 0.256303112586596,
+        "expected_gradient": [
+          0.256303112586596,
+          -0.17086874172439734,
+          -0.08543437086219867
+        ],
+        "success_derivative": -0.0051260622517319224,
+        "no_std_gradient": [
+          {
+            "fraction": "9/320",
+            "decimal": 0.028125
+          },
+          {
+            "fraction": "-3/160",
+            "decimal": -0.01875
+          },
+          {
+            "fraction": "-3/320",
+            "decimal": -0.009375
+          }
+        ],
+        "no_std_success_derivative": {
+          "fraction": "-9/16000",
+          "decimal": -0.0005625
+        },
+        "count_states": 153
+      }
+    },
+    "ideal_full_gradient_Adam_success_derivative": {
+      "fraction": "3/50",
+      "decimal": 0.06
+    },
+    "reward_tilt_initial_success_derivative": {
+      "fraction": "1/100",
+      "decimal": 0.01
+    }
+  },
+  "ProCredit": {
+    "p": [
+      {
+        "fraction": "1/50",
+        "decimal": 0.02
+      },
+      {
+        "fraction": "3/4",
+        "decimal": 0.75
+      },
+      {
+        "fraction": "23/100",
+        "decimal": 0.23
+      }
+    ],
+    "c": [
+      {
+        "fraction": "1",
+        "decimal": 1.0
+      },
+      {
+        "fraction": "0",
+        "decimal": 0.0
+      },
+      {
+        "fraction": "0",
+        "decimal": 0.0
+      }
+    ],
+    "final_progress": [
+      {
+        "fraction": "1",
+        "decimal": 1.0
+      },
+      {
+        "fraction": "1/10",
+        "decimal": 0.1
+      },
+      {
+        "fraction": "0",
+        "decimal": 0.0
+      }
+    ],
+    "b": {
+      "fraction": "1/2",
+      "decimal": 0.5
+    },
+    "scores": [
+      {
+        "fraction": "3/2",
+        "decimal": 1.5
+      },
+      {
+        "fraction": "1/20",
+        "decimal": 0.05
+      },
+      {
+        "fraction": "0",
+        "decimal": 0.0
+      }
+    ],
+    "success_gradient": [
+      {
+        "fraction": "49/2500",
+        "decimal": 0.0196
+      },
+      {
+        "fraction": "-3/200",
+        "decimal": -0.015
+      },
+      {
+        "fraction": "-23/5000",
+        "decimal": -0.0046
+      }
+    ],
+    "raw_score_gradient": [
+      {
+        "fraction": "573/20000",
+        "decimal": 0.02865
+      },
+      {
+        "fraction": "-21/1600",
+        "decimal": -0.013125
+      },
+      {
+        "fraction": "-621/40000",
+        "decimal": -0.015525
+      }
+    ],
+    "G2_exact": {
+      "ordered_pairs": [
+        {
+          "actions": [
+            1,
+            1
+          ],
+          "probability": {
+            "fraction": "1/2500",
+            "decimal": 0.0004
+          },
+          "advantages": [
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            }
+          ],
+          "group_gradient": [
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            }
+          ]
+        },
+        {
+          "actions": [
+            1,
+            2
+          ],
+          "probability": {
+            "fraction": "3/200",
+            "decimal": 0.015
+          },
+          "advantages": [
+            {
+              "fraction": "69/40",
+              "decimal": 1.725
+            },
+            {
+              "fraction": "-69/40",
+              "decimal": -1.725
+            }
+          ],
+          "group_gradient": [
+            {
+              "fraction": "69/80",
+              "decimal": 0.8625
+            },
+            {
+              "fraction": "-69/80",
+              "decimal": -0.8625
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            }
+          ]
+        },
+        {
+          "actions": [
+            1,
+            3
+          ],
+          "probability": {
+            "fraction": "23/5000",
+            "decimal": 0.0046
+          },
+          "advantages": [
+            {
+              "fraction": "7/4",
+              "decimal": 1.75
+            },
+            {
+              "fraction": "-7/4",
+              "decimal": -1.75
+            }
+          ],
+          "group_gradient": [
+            {
+              "fraction": "7/8",
+              "decimal": 0.875
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "-7/8",
+              "decimal": -0.875
+            }
+          ]
+        },
+        {
+          "actions": [
+            2,
+            1
+          ],
+          "probability": {
+            "fraction": "3/200",
+            "decimal": 0.015
+          },
+          "advantages": [
+            {
+              "fraction": "-69/40",
+              "decimal": -1.725
+            },
+            {
+              "fraction": "69/40",
+              "decimal": 1.725
+            }
+          ],
+          "group_gradient": [
+            {
+              "fraction": "69/80",
+              "decimal": 0.8625
+            },
+            {
+              "fraction": "-69/80",
+              "decimal": -0.8625
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            }
+          ]
+        },
+        {
+          "actions": [
+            2,
+            2
+          ],
+          "probability": {
+            "fraction": "9/16",
+            "decimal": 0.5625
+          },
+          "advantages": [
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            }
+          ],
+          "group_gradient": [
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            }
+          ]
+        },
+        {
+          "actions": [
+            2,
+            3
+          ],
+          "probability": {
+            "fraction": "69/400",
+            "decimal": 0.1725
+          },
+          "advantages": [
+            {
+              "fraction": "41/40",
+              "decimal": 1.025
+            },
+            {
+              "fraction": "-41/40",
+              "decimal": -1.025
+            }
+          ],
+          "group_gradient": [
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "41/80",
+              "decimal": 0.5125
+            },
+            {
+              "fraction": "-41/80",
+              "decimal": -0.5125
+            }
+          ]
+        },
+        {
+          "actions": [
+            3,
+            1
+          ],
+          "probability": {
+            "fraction": "23/5000",
+            "decimal": 0.0046
+          },
+          "advantages": [
+            {
+              "fraction": "-7/4",
+              "decimal": -1.75
+            },
+            {
+              "fraction": "7/4",
+              "decimal": 1.75
+            }
+          ],
+          "group_gradient": [
+            {
+              "fraction": "7/8",
+              "decimal": 0.875
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "-7/8",
+              "decimal": -0.875
+            }
+          ]
+        },
+        {
+          "actions": [
+            3,
+            2
+          ],
+          "probability": {
+            "fraction": "69/400",
+            "decimal": 0.1725
+          },
+          "advantages": [
+            {
+              "fraction": "-41/40",
+              "decimal": -1.025
+            },
+            {
+              "fraction": "41/40",
+              "decimal": 1.025
+            }
+          ],
+          "group_gradient": [
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "41/80",
+              "decimal": 0.5125
+            },
+            {
+              "fraction": "-41/80",
+              "decimal": -0.5125
+            }
+          ]
+        },
+        {
+          "actions": [
+            3,
+            3
+          ],
+          "probability": {
+            "fraction": "529/10000",
+            "decimal": 0.0529
+          },
+          "advantages": [
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            }
+          ],
+          "group_gradient": [
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            {
+              "fraction": "0",
+              "decimal": 0.0
+            }
+          ]
+        }
+      ],
+      "combined_gradient": [
+        {
+          "fraction": "1357/40000",
+          "decimal": 0.033925
+        },
+        {
+          "fraction": "483/3200",
+          "decimal": 0.1509375
+        },
+        {
+          "fraction": "-14789/80000",
+          "decimal": -0.1848625
+        }
+      ],
+      "trajectory_gradient": [
+        {
+          "fraction": "49/2500",
+          "decimal": 0.0196
+        },
+        {
+          "fraction": "63/400",
+          "decimal": 0.1575
+        },
+        {
+          "fraction": "-1771/10000",
+          "decimal": -0.1771
+        }
+      ],
+      "turn_gradient": [
+        {
+          "fraction": "573/40000",
+          "decimal": 0.014325
+        },
+        {
+          "fraction": "-21/3200",
+          "decimal": -0.0065625
+        },
+        {
+          "fraction": "-621/80000",
+          "decimal": -0.0077625
+        }
+      ],
+      "success_dot_raw": {
+        "fraction": "82983/100000000",
+        "decimal": 0.00082983
+      },
+      "success_dot_combined": {
+        "fraction": "-149753/200000000",
+        "decimal": -0.000748765
+      },
+      "success_dot_trajectory": {
+        "fraction": "-7273/6250000",
+        "decimal": -0.00116368
+      },
+      "success_dot_turn": {
+        "fraction": "82983/200000000",
+        "decimal": 0.000414915
+      },
+      "score_dot_combined": {
+        "fraction": "2977419/1600000000",
+        "decimal": 0.001860886875
+      }
+    },
+    "finite_groups_epsilon_1e_6": {
+      "G2_population": {
+        "G": 2,
+        "count_states": 6,
+        "epsilon": 1e-06,
+        "std": "population",
+        "normalized_terms": 1,
+        "centered_terms": 1,
+        "expected_gradient": [
+          0.03392497317704821,
+          0.15093062096561555,
+          -0.18485559414266375
+        ],
+        "success_derivative": -0.0007486941071578352,
+        "score_derivative": 0.0018608691804135819
+      },
+      "G2_sample": {
+        "G": 2,
+        "count_states": 6,
+        "epsilon": 1e-06,
+        "std": "sample",
+        "normalized_terms": 1,
+        "centered_terms": 1,
+        "expected_gradient": [
+          0.02818427949977506,
+          0.1048033784792767,
+          -0.13298765797905177
+        ],
+        "success_derivative": -0.0004078955722899211,
+        "score_derivative": 0.0014965686552528275
+      },
+      "G8_population": {
+        "G": 8,
+        "count_states": 45,
+        "epsilon": 1e-06,
+        "std": "population",
+        "normalized_terms": 1,
+        "centered_terms": 1,
+        "expected_gradient": [
+          0.07546851251814937,
+          0.26503093757514085,
+          -0.3404994500932902
+        ],
+        "states": [
+          {
+            "counts": [
+              0,
+              0,
+              8
+            ],
+            "probability": {
+              "fraction": "78310985281/10000000000000000",
+              "decimal": 7.8310985281e-06
+            },
+            "mean_score": {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            "std": 0.0,
+            "advantages_by_action": [
+              1.5,
+              0.05,
+              0.0
+            ],
+            "group_gradient": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              0,
+              1,
+              7
+            ],
+            "probability": {
+              "fraction": "10214476341/50000000000000",
+              "decimal": 0.00020428952682
+            },
+            "mean_score": {
+              "fraction": "1/160",
+              "decimal": 0.00625
+            },
+            "std": 0.016535945694153693,
+            "advantages_by_action": [
+              91.82179652240501,
+              2.6893413207398957,
+              -0.3841916172485565
+            ],
+            "group_gradient": [
+              -8.673617379884035e-19,
+              0.3361676650924869,
+              -0.3361676650924869
+            ]
+          },
+          {
+            "counts": [
+              0,
+              2,
+              6
+            ],
+            "probability": {
+              "fraction": "9326261007/4000000000000",
+              "decimal": 0.00233156525175
+            },
+            "mean_score": {
+              "fraction": "1/80",
+              "decimal": 0.0125
+            },
+            "std": 0.021650635094610966,
+            "advantages_by_action": [
+              70.18900884679535,
+              1.7694708112637483,
+              -0.5898236037545828
+            ],
+            "group_gradient": [
+              0.0,
+              0.44236770281593707,
+              -0.44236770281593707
+            ]
+          },
+          {
+            "counts": [
+              0,
+              3,
+              5
+            ],
+            "probability": {
+              "fraction": "1216468827/80000000000",
+              "decimal": 0.0152058603375
+            },
+            "mean_score": {
+              "fraction": "3/160",
+              "decimal": 0.01875
+            },
+            "std": 0.024206145913796356,
+            "advantages_by_action": [
+              62.671858974509156,
+              1.3221911176056784,
+              -0.793314670563407
+            ],
+            "group_gradient": [
+              -1.734723475976807e-18,
+              0.49582166910212944,
+              -0.4958216691021294
+            ]
+          },
+          {
+            "counts": [
+              0,
+              4,
+              4
+            ],
+            "probability": {
+              "fraction": "158669847/2560000000",
+              "decimal": 0.061980408984375
+            },
+            "mean_score": {
+              "fraction": "1/40",
+              "decimal": 0.025
+            },
+            "std": 0.025,
+            "advantages_by_action": [
+              60.472640094396226,
+              1.0249600015999358,
+              -1.0249600015999358
+            ],
+            "group_gradient": [
+              0.0,
+              0.5124800007999679,
+              -0.5124800007999679
+            ]
+          },
+          {
+            "counts": [
+              0,
+              5,
+              3
+            ],
+            "probability": {
+              "fraction": "20696067/128000000",
+              "decimal": 0.1616880234375
+            },
+            "mean_score": {
+              "fraction": "1/32",
+              "decimal": 0.03125
+            },
+            "std": 0.024206145913796356,
+            "advantages_by_action": [
+              62.142982527466884,
+              0.793314670563407,
+              -1.3221911176056784
+            ],
+            "group_gradient": [
+              1.734723475976807e-18,
+              0.4958216691021294,
+              -0.49582166910212944
+            ]
+          },
+          {
+            "counts": [
+              0,
+              6,
+              2
+            ],
+            "probability": {
+              "fraction": "2699487/10240000",
+              "decimal": 0.26362177734375
+            },
+            "mean_score": {
+              "fraction": "3/80",
+              "decimal": 0.0375
+            },
+            "std": 0.021650635094610966,
+            "advantages_by_action": [
+              69.00936163928618,
+              0.5898236037545828,
+              -1.7694708112637483
+            ],
+            "group_gradient": [
+              0.0,
+              0.44236770281593707,
+              -0.44236770281593707
+            ]
+          },
+          {
+            "counts": [
+              0,
+              7,
+              1
+            ],
+            "probability": {
+              "fraction": "50301/204800",
+              "decimal": 0.2456103515625
+            },
+            "mean_score": {
+              "fraction": "7/160",
+              "decimal": 0.04375
+            },
+            "std": 0.016535945694153693,
+            "advantages_by_action": [
+              89.51664681891367,
+              0.3841916172485565,
+              -2.6893413207398957
+            ],
+            "group_gradient": [
+              8.673617379884035e-19,
+              0.33616766509248697,
+              -0.33616766509248697
+            ]
+          },
+          {
+            "counts": [
+              0,
+              8,
+              0
+            ],
+            "probability": {
+              "fraction": "6561/65536",
+              "decimal": 0.1001129150390625
+            },
+            "mean_score": {
+              "fraction": "1/20",
+              "decimal": 0.05
+            },
+            "std": 0.0,
+            "advantages_by_action": [
+              1.45,
+              0.0,
+              -0.05
+            ],
+            "group_gradient": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              1,
+              0,
+              7
+            ],
+            "probability": {
+              "fraction": "3404825447/625000000000000",
+              "decimal": 5.4477207152e-06
+            },
+            "mean_score": {
+              "fraction": "3/16",
+              "decimal": 0.1875
+            },
+            "std": 0.49607837082461076,
+            "advantages_by_action": [
+              3.958245977742008,
+              -0.4146733881444009,
+              -0.5654637111060012
+            ],
+            "group_gradient": [
+              0.494780747217751,
+              5.551115123125783e-17,
+              -0.49478074721775106
+            ]
+          },
+          {
+            "counts": [
+              1,
+              1,
+              6
+            ],
+            "probability": {
+              "fraction": "3108753669/25000000000000",
+              "decimal": 0.00012435014676
+            },
+            "mean_score": {
+              "fraction": "31/160",
+              "decimal": 0.19375
+            },
+            "std": 0.4939872847553872,
+            "advantages_by_action": [
+              3.9505434788358955,
+              -0.4347488038910316,
+              -0.5859657791574774
+            ],
+            "group_gradient": [
+              0.49381793485448694,
+              -0.05434360048637893,
+              -0.439474334368108
+            ]
+          },
+          {
+            "counts": [
+              1,
+              2,
+              5
+            ],
+            "probability": {
+              "fraction": "1216468827/1000000000000",
+              "decimal": 0.001216468827
+            },
+            "mean_score": {
+              "fraction": "1/5",
+              "decimal": 0.2
+            },
+            "std": 0.49180788932265007,
+            "advantages_by_action": [
+              3.94330317776574,
+              -0.4549965205114316,
+              -0.6066620273485754
+            ],
+            "group_gradient": [
+              0.4929128972207175,
+              -0.11374913012785787,
+              -0.3791637670928597
+            ]
+          },
+          {
+            "counts": [
+              1,
+              3,
+              4
+            ],
+            "probability": {
+              "fraction": "52889949/8000000000",
+              "decimal": 0.006611243625
+            },
+            "mean_score": {
+              "fraction": "33/160",
+              "decimal": 0.20625
+            },
+            "std": 0.48953900508539666,
+            "advantages_by_action": [
+              3.9365370788094527,
+              -0.4754271834310933,
+              -0.6275638821290431
+            ],
+            "group_gradient": [
+              0.4920671348511816,
+              -0.17828519378666002,
+              -0.3137819410645216
+            ]
+          },
+          {
+            "counts": [
+              1,
+              4,
+              3
+            ],
+            "probability": {
+              "fraction": "6898689/320000000",
+              "decimal": 0.021558403125
+            },
+            "mean_score": {
+              "fraction": "17/80",
+              "decimal": 0.2125
+            },
+            "std": 0.4871793817476269,
+            "advantages_by_action": [
+              3.9302583052122184,
+              -0.49605201910445473,
+              -0.6486834095981331
+            ],
+            "group_gradient": [
+              0.49128228815152725,
+              -0.24802600955222737,
+              -0.2432562785992999
+            ]
+          },
+          {
+            "counts": [
+              1,
+              5,
+              2
+            ],
+            "probability": {
+              "fraction": "2699487/64000000",
+              "decimal": 0.042179484375
+            },
+            "mean_score": {
+              "fraction": "7/32",
+              "decimal": 0.21875
+            },
+            "std": 0.48472769417478095,
+            "advantages_by_action": [
+              3.9244811835412277,
+              -0.5168828875883569,
+              -0.6700333727997219
+            ],
+            "group_gradient": [
+              0.49056014794265346,
+              -0.323051804742723,
+              -0.16750834319993047
+            ]
+          },
+          {
+            "counts": [
+              1,
+              6,
+              1
+            ],
+            "probability": {
+              "fraction": "117369/2560000",
+              "decimal": 0.045847265625
+            },
+            "mean_score": {
+              "fraction": "9/40",
+              "decimal": 0.225
+            },
+            "std": 0.4821825380496478,
+            "advantages_by_action": [
+              3.9192213377029894,
+              -0.5379323404690377,
+              -0.6916272948887628
+            ],
+            "group_gradient": [
+              0.4899026672128737,
+              -0.40344925535177834,
+              -0.08645341186109537
+            ]
+          },
+          {
+            "counts": [
+              1,
+              7,
+              0
+            ],
+            "probability": {
+              "fraction": "2187/102400",
+              "decimal": 0.021357421875
+            },
+            "mean_score": {
+              "fraction": "37/160",
+              "decimal": 0.23125
+            },
+            "std": 0.47954242513045703,
+            "advantages_by_action": [
+              3.9144957938347167,
+              -0.559213684833531,
+              -0.7134795289255396
+            ],
+            "group_gradient": [
+              0.4893119742293396,
+              -0.4893119742293396,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              2,
+              0,
+              6
+            ],
+            "probability": {
+              "fraction": "1036251223/625000000000000",
+              "decimal": 1.6580019568e-06
+            },
+            "mean_score": {
+              "fraction": "3/8",
+              "decimal": 0.375
+            },
+            "std": 0.649519052838329,
+            "advantages_by_action": [
+              2.857048140906316,
+              -0.8253694629284913,
+              -0.9523493803021054
+            ],
+            "group_gradient": [
+              0.714262035226579,
+              0.0,
+              -0.714262035226579
+            ]
+          },
+          {
+            "counts": [
+              2,
+              1,
+              5
+            ],
+            "probability": {
+              "fraction": "405489609/12500000000000",
+              "decimal": 3.243916872e-05
+            },
+            "mean_score": {
+              "fraction": "61/160",
+              "decimal": 0.38125
+            },
+            "std": 0.646112170988908,
+            "advantages_by_action": [
+              2.8502578073516096,
+              -0.843931082623661,
+              -0.9713169064159117
+            ],
+            "group_gradient": [
+              0.7125644518379023,
+              -0.10549138532795754,
+              -0.6070730665099449
+            ]
+          },
+          {
+            "counts": [
+              2,
+              2,
+              4
+            ],
+            "probability": {
+              "fraction": "52889949/200000000000",
+              "decimal": 0.000264449745
+            },
+            "mean_score": {
+              "fraction": "31/80",
+              "decimal": 0.3875
+            },
+            "std": 0.6426264467013476,
+            "advantages_by_action": [
+              2.843674112949177,
+              -0.8626876522430088,
+              -0.9904932303530842
+            ],
+            "group_gradient": [
+              0.7109185282372942,
+              -0.21567191306075217,
+              -0.4952466151765421
+            ]
+          },
+          {
+            "counts": [
+              2,
+              3,
+              3
+            ],
+            "probability": {
+              "fraction": "2299563/2000000000",
+              "decimal": 0.0011497815
+            },
+            "mean_score": {
+              "fraction": "63/160",
+              "decimal": 0.39375
+            },
+            "std": 0.639060589850446,
+            "advantages_by_action": [
+              2.837303810101286,
+              -0.8816480765851454,
+              -1.009887796815712
+            ],
+            "group_gradient": [
+              0.7093259525253215,
+              -0.33061802871942947,
+              -0.378707923805892
+            ]
+          },
+          {
+            "counts": [
+              2,
+              4,
+              2
+            ],
+            "probability": {
+              "fraction": "899829/320000000",
+              "decimal": 0.002811965625
+            },
+            "mean_score": {
+              "fraction": "2/5",
+              "decimal": 0.4
+            },
+            "std": 0.6354132513569417,
+            "advantages_by_action": [
+              2.831154121348278,
+              -0.9008217658835428,
+              -1.029510589581192
+            ],
+            "group_gradient": [
+              0.7077885303370693,
+              -0.4504108829417715,
+              -0.257377647395298
+            ]
+          },
+          {
+            "counts": [
+              2,
+              5,
+              1
+            ],
+            "probability": {
+              "fraction": "117369/32000000",
+              "decimal": 0.00366778125
+            },
+            "mean_score": {
+              "fraction": "13/32",
+              "decimal": 0.40625
+            },
+            "std": 0.6316830197971132,
+            "advantages_by_action": [
+              2.8252327757575615,
+              -0.9202186755324628,
+              -1.0493721738528086
+            ],
+            "group_gradient": [
+              0.7063081939393903,
+              -0.5751366722077894,
+              -0.13117152173160107
+            ]
+          },
+          {
+            "counts": [
+              2,
+              6,
+              0
+            ],
+            "probability": {
+              "fraction": "5103/2560000",
+              "decimal": 0.001993359375
+            },
+            "mean_score": {
+              "fraction": "33/80",
+              "decimal": 0.4125
+            },
+            "std": 0.627868417743718,
+            "advantages_by_action": [
+              2.819548048952581,
+              -0.9398493496508604,
+              -1.0694837427061514
+            ],
+            "group_gradient": [
+              0.7048870122381452,
+              -0.7048870122381453,
+              2.7755575615628914e-17
+            ]
+          },
+          {
+            "counts": [
+              3,
+              0,
+              5
+            ],
+            "probability": {
+              "fraction": "45054401/156250000000000",
+              "decimal": 2.883481664e-07
+            },
+            "mean_score": {
+              "fraction": "9/16",
+              "decimal": 0.5625
+            },
+            "std": 0.7261843774138906,
+            "advantages_by_action": [
+              2.2284926709604758,
+              -1.21824266012506,
+              -1.3370956025762855
+            ],
+            "group_gradient": [
+              0.8356847516101784,
+              0.0,
+              -0.8356847516101784
+            ]
+          },
+          {
+            "counts": [
+              3,
+              1,
+              4
+            ],
+            "probability": {
+              "fraction": "5876661/1250000000000",
+              "decimal": 4.7013288e-06
+            },
+            "mean_score": {
+              "fraction": "91/160",
+              "decimal": 0.56875
+            },
+            "std": 0.7215164152671788,
+            "advantages_by_action": [
+              2.2219326367526513,
+              -1.2377208647682556,
+              -1.3570192613724246
+            ],
+            "group_gradient": [
+              0.8332247387822442,
+              -0.15471510809603195,
+              -0.6785096306862124
+            ]
+          },
+          {
+            "counts": [
+              3,
+              2,
+              3
+            ],
+            "probability": {
+              "fraction": "766521/25000000000",
+              "decimal": 3.066084e-05
+            },
+            "mean_score": {
+              "fraction": "23/40",
+              "decimal": 0.575
+            },
+            "std": 0.7167635593415725,
+            "advantages_by_action": [
+              2.215521396383932,
+              -1.2574580898395291,
+              -1.3772160031575793
+            ],
+            "group_gradient": [
+              0.8308205236439744,
+              -0.31436452245988233,
+              -0.5164560011840922
+            ]
+          },
+          {
+            "counts": [
+              3,
+              3,
+              2
+            ],
+            "probability": {
+              "fraction": "99981/1000000000",
+              "decimal": 9.9981e-05
+            },
+            "mean_score": {
+              "fraction": "93/160",
+              "decimal": 0.58125
+            },
+            "std": 0.7119241093684073,
+            "advantages_by_action": [
+              2.209264954325856,
+              -1.2774661300523655,
+              -1.3976982364102353
+            ],
+            "group_gradient": [
+              0.8284743578721959,
+              -0.4790497987696371,
+              -0.3494245591025588
+            ]
+          },
+          {
+            "counts": [
+              3,
+              4,
+              1
+            ],
+            "probability": {
+              "fraction": "13041/80000000",
+              "decimal": 0.0001630125
+            },
+            "mean_score": {
+              "fraction": "47/80",
+              "decimal": 0.5875
+            },
+            "std": 0.7069962871189636,
+            "advantages_by_action": [
+              2.203169733286342,
+              -1.2977575141275712,
+              -1.4184791433487407
+            ],
+            "group_gradient": [
+              0.8261886499823782,
+              -0.6488787570637856,
+              -0.1773098929185926
+            ]
+          },
+          {
+            "counts": [
+              3,
+              5,
+              0
+            ],
+            "probability": {
+              "fraction": "1701/16000000",
+              "decimal": 0.0001063125
+            },
+            "mean_score": {
+              "fraction": "19/32",
+              "decimal": 0.59375
+            },
+            "std": 0.7019782315000943,
+            "advantages_by_action": [
+              2.1972426096579656,
+              -1.3183455657947794,
+              -1.4395727442586672
+            ],
+            "group_gradient": [
+              0.823965978621737,
+              -0.823965978621737,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              4,
+              0,
+              4
+            ],
+            "probability": {
+              "fraction": "1958887/62500000000000",
+              "decimal": 3.1342192e-08
+            },
+            "mean_score": {
+              "fraction": "3/4",
+              "decimal": 0.75
+            },
+            "std": 0.75,
+            "advantages_by_action": [
+              1.7499986666684444,
+              -1.633332088890548,
+              -1.7499986666684444
+            ],
+            "group_gradient": [
+              0.8749993333342221,
+              0.0,
+              -0.8749993333342223
+            ]
+          },
+          {
+            "counts": [
+              4,
+              1,
+              3
+            ],
+            "probability": {
+              "fraction": "255507/625000000000",
+              "decimal": 4.088112e-07
+            },
+            "mean_score": {
+              "fraction": "121/160",
+              "decimal": 0.75625
+            },
+            "std": 0.7439075463389251,
+            "advantages_by_action": [
+              1.7435368738842896,
+              -1.6556274516716363,
+              -1.7728400146218406
+            ],
+            "group_gradient": [
+              0.8717684369421448,
+              -0.2069534314589545,
+              -0.6648150054831903
+            ]
+          },
+          {
+            "counts": [
+              4,
+              2,
+              2
+            ],
+            "probability": {
+              "fraction": "99981/50000000000",
+              "decimal": 1.99962e-06
+            },
+            "mean_score": {
+              "fraction": "61/80",
+              "decimal": 0.7625
+            },
+            "std": 0.7377118339839751,
+            "advantages_by_action": [
+              1.73721149480642,
+              -1.6783229695587445,
+              -1.7961000200540949
+            ],
+            "group_gradient": [
+              0.86860574740321,
+              -0.4195807423896861,
+              -0.44902500501352377
+            ]
+          },
+          {
+            "counts": [
+              4,
+              3,
+              1
+            ],
+            "probability": {
+              "fraction": "4347/1000000000",
+              "decimal": 4.347e-06
+            },
+            "mean_score": {
+              "fraction": "123/160",
+              "decimal": 0.76875
+            },
+            "std": 0.7314102388536818,
+            "advantages_by_action": [
+              1.7310295510307792,
+              -1.7014393022952103,
+              -1.8198002972374858
+            ],
+            "group_gradient": [
+              0.8655147755153895,
+              -0.6380397383607039,
+              -0.22747503715468573
+            ]
+          },
+          {
+            "counts": [
+              4,
+              4,
+              0
+            ],
+            "probability": {
+              "fraction": "567/160000000",
+              "decimal": 3.54375e-06
+            },
+            "mean_score": {
+              "fraction": "31/40",
+              "decimal": 0.775
+            },
+            "std": 0.725,
+            "advantages_by_action": [
+              1.7249986206915575,
+              -1.7249986206915575,
+              -1.8439640428082167
+            ],
+            "group_gradient": [
+              0.8624993103457788,
+              -0.8624993103457788,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              5,
+              0,
+              3
+            ],
+            "probability": {
+              "fraction": "85169/39062500000000",
+              "decimal": 2.1803264e-09
+            },
+            "mean_score": {
+              "fraction": "15/16",
+              "decimal": 0.9375
+            },
+            "std": 0.7261843774138906,
+            "advantages_by_action": [
+              1.3370956025762855,
+              -2.1096397285092507,
+              -2.2284926709604758
+            ],
+            "group_gradient": [
+              0.8356847516101784,
+              0.0,
+              -0.8356847516101784
+            ]
+          },
+          {
+            "counts": [
+              5,
+              1,
+              2
+            ],
+            "probability": {
+              "fraction": "33327/1562500000000",
+              "decimal": 2.132928e-08
+            },
+            "mean_score": {
+              "fraction": "151/160",
+              "decimal": 0.94375
+            },
+            "std": 0.7182607030180616,
+            "advantages_by_action": [
+              1.3306891739984117,
+              -2.138073616649133,
+              -2.2576861266714623
+            ],
+            "group_gradient": [
+              0.8316807337490073,
+              -0.26725920208114173,
+              -0.5644215316678656
+            ]
+          },
+          {
+            "counts": [
+              5,
+              2,
+              1
+            ],
+            "probability": {
+              "fraction": "4347/62500000000",
+              "decimal": 6.9552e-08
+            },
+            "mean_score": {
+              "fraction": "19/20",
+              "decimal": 0.95
+            },
+            "std": 0.7101936355670896,
+            "advantages_by_action": [
+              1.3244355877326863,
+              -2.1672582344716687,
+              -2.2876614697200943
+            ],
+            "group_gradient": [
+              0.8277722423329289,
+              -0.5418145586179172,
+              -0.2859576837150118
+            ]
+          },
+          {
+            "counts": [
+              5,
+              3,
+              0
+            ],
+            "probability": {
+              "fraction": "189/2500000000",
+              "decimal": 7.56e-08
+            },
+            "mean_score": {
+              "fraction": "153/160",
+              "decimal": 0.95625
+            },
+            "std": 0.7019782315000943,
+            "advantages_by_action": [
+              1.3183455657947794,
+              -2.1972426096579656,
+              -2.3184697881218534
+            ],
+            "group_gradient": [
+              0.823965978621737,
+              -0.823965978621737,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              6,
+              0,
+              2
+            ],
+            "probability": {
+              "fraction": "3703/39062500000000",
+              "decimal": 9.47968e-11
+            },
+            "mean_score": {
+              "fraction": "9/8",
+              "decimal": 1.125
+            },
+            "std": 0.649519052838329,
+            "advantages_by_action": [
+              0.9523493803021054,
+              -2.730068223532702,
+              -2.857048140906316
+            ],
+            "group_gradient": [
+              0.714262035226579,
+              0.0,
+              -0.714262035226579
+            ]
+          },
+          {
+            "counts": [
+              6,
+              1,
+              1
+            ],
+            "probability": {
+              "fraction": "483/781250000000",
+              "decimal": 6.1824e-10
+            },
+            "mean_score": {
+              "fraction": "181/160",
+              "decimal": 1.13125
+            },
+            "std": 0.6388160435524456,
+            "advantages_by_action": [
+              0.9459888256102099,
+              -2.7738316411960393,
+              -2.9021013124652204
+            ],
+            "group_gradient": [
+              0.7094916192076575,
+              -0.3467289551495049,
+              -0.3627626640581526
+            ]
+          },
+          {
+            "counts": [
+              6,
+              2,
+              0
+            ],
+            "probability": {
+              "fraction": "63/62500000000",
+              "decimal": 1.008e-09
+            },
+            "mean_score": {
+              "fraction": "91/80",
+              "decimal": 1.1375
+            },
+            "std": 0.627868417743718,
+            "advantages_by_action": [
+              0.9398493496508604,
+              -2.819548048952581,
+              -2.949182442007872
+            ],
+            "group_gradient": [
+              0.7048870122381453,
+              -0.7048870122381452,
+              -2.7755575615628914e-17
+            ]
+          },
+          {
+            "counts": [
+              7,
+              0,
+              1
+            ],
+            "probability": {
+              "fraction": "23/9765625000000",
+              "decimal": 2.3552e-12
+            },
+            "mean_score": {
+              "fraction": "21/16",
+              "decimal": 1.3125
+            },
+            "std": 0.49607837082461076,
+            "advantages_by_action": [
+              0.5654637111060012,
+              -3.8074556547804077,
+              -3.958245977742008
+            ],
+            "group_gradient": [
+              0.4947807472177511,
+              -5.551115123125783e-17,
+              -0.49478074721775106
+            ]
+          },
+          {
+            "counts": [
+              7,
+              1,
+              0
+            ],
+            "probability": {
+              "fraction": "3/390625000000",
+              "decimal": 7.68e-12
+            },
+            "mean_score": {
+              "fraction": "211/160",
+              "decimal": 1.31875
+            },
+            "std": 0.47954242513045703,
+            "advantages_by_action": [
+              0.559213684833531,
+              -3.9144957938347167,
+              -4.068761637926725
+            ],
+            "group_gradient": [
+              0.4893119742293396,
+              -0.4893119742293396,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              8,
+              0,
+              0
+            ],
+            "probability": {
+              "fraction": "1/39062500000000",
+              "decimal": 2.56e-14
+            },
+            "mean_score": {
+              "fraction": "3/2",
+              "decimal": 1.5
+            },
+            "std": 0.0,
+            "advantages_by_action": [
+              0.0,
+              -1.45,
+              -1.5
+            ],
+            "group_gradient": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "success_derivative": -0.0009299837478422505,
+        "score_derivative": 0.003969895790669586
+      },
+      "G8_sample": {
+        "G": 8,
+        "count_states": 45,
+        "epsilon": 1e-06,
+        "std": "sample",
+        "normalized_terms": 1,
+        "centered_terms": 1,
+        "expected_gradient": [
+          0.07221341708914843,
+          0.24717291789667672,
+          -0.31938633498582514
+        ],
+        "states": [
+          {
+            "counts": [
+              0,
+              0,
+              8
+            ],
+            "probability": {
+              "fraction": "78310985281/10000000000000000",
+              "decimal": 7.8310985281e-06
+            },
+            "mean_score": {
+              "fraction": "0",
+              "decimal": 0.0
+            },
+            "std": 0.0,
+            "advantages_by_action": [
+              1.5,
+              0.05,
+              0.0
+            ],
+            "group_gradient": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              0,
+              1,
+              7
+            ],
+            "probability": {
+              "fraction": "10214476341/50000000000000",
+              "decimal": 0.00020428952682
+            },
+            "mean_score": {
+              "fraction": "1/160",
+              "decimal": 0.00625
+            },
+            "std": 0.017677669529663688,
+            "advantages_by_action": [
+              85.98823062217477,
+              2.518483742072064,
+              -0.35978339172458057
+            ],
+            "group_gradient": [
+              0.0,
+              0.314810467759008,
+              -0.314810467759008
+            ]
+          },
+          {
+            "counts": [
+              0,
+              2,
+              6
+            ],
+            "probability": {
+              "fraction": "9326261007/4000000000000",
+              "decimal": 0.00233156525175
+            },
+            "mean_score": {
+              "fraction": "1/80",
+              "decimal": 0.0125
+            },
+            "std": 0.023145502494313786,
+            "advantages_by_action": [
+              65.75206871250514,
+              1.65761517762618,
+              -0.5525383925420599
+            ],
+            "group_gradient": [
+              -1.734723475976807e-18,
+              0.41440379440654496,
+              -0.41440379440654496
+            ]
+          },
+          {
+            "counts": [
+              0,
+              3,
+              5
+            ],
+            "probability": {
+              "fraction": "1216468827/80000000000",
+              "decimal": 0.0152058603375
+            },
+            "mean_score": {
+              "fraction": "3/160",
+              "decimal": 0.01875
+            },
+            "std": 0.02587745847533828,
+            "advantages_by_action": [
+              58.71997623292478,
+              1.238818063985755,
+              -0.7432908383914529
+            ],
+            "group_gradient": [
+              0.0,
+              0.4645567739946581,
+              -0.4645567739946581
+            ]
+          },
+          {
+            "counts": [
+              0,
+              4,
+              4
+            ],
+            "probability": {
+              "fraction": "158669847/2560000000",
+              "decimal": 0.061980408984375
+            },
+            "mean_score": {
+              "fraction": "1/40",
+              "decimal": 0.025
+            },
+            "std": 0.02672612419124244,
+            "advantages_by_action": [
+              56.662381532177974,
+              0.9603793480030165,
+              -0.9603793480030165
+            ],
+            "group_gradient": [
+              0.0,
+              0.48018967400150825,
+              -0.48018967400150825
+            ]
+          },
+          {
+            "counts": [
+              0,
+              5,
+              3
+            ],
+            "probability": {
+              "fraction": "20696067/128000000",
+              "decimal": 0.1616880234375
+            },
+            "mean_score": {
+              "fraction": "1/32",
+              "decimal": 0.03125
+            },
+            "std": 0.02587745847533828,
+            "advantages_by_action": [
+              58.22444900733048,
+              0.7432908383914529,
+              -1.238818063985755
+            ],
+            "group_gradient": [
+              0.0,
+              0.4645567739946581,
+              -0.4645567739946581
+            ]
+          },
+          {
+            "counts": [
+              0,
+              6,
+              2
+            ],
+            "probability": {
+              "fraction": "2699487/10240000",
+              "decimal": 0.26362177734375
+            },
+            "mean_score": {
+              "fraction": "3/80",
+              "decimal": 0.0375
+            },
+            "std": 0.023145502494313786,
+            "advantages_by_action": [
+              64.64699192742101,
+              0.5525383925420599,
+              -1.65761517762618
+            ],
+            "group_gradient": [
+              1.734723475976807e-18,
+              0.41440379440654496,
+              -0.414403794406545
+            ]
+          },
+          {
+            "counts": [
+              0,
+              7,
+              1
+            ],
+            "probability": {
+              "fraction": "50301/204800",
+              "decimal": 0.2456103515625
+            },
+            "mean_score": {
+              "fraction": "7/160",
+              "decimal": 0.04375
+            },
+            "std": 0.017677669529663688,
+            "advantages_by_action": [
+              83.82953027182728,
+              0.35978339172458057,
+              -2.518483742072064
+            ],
+            "group_gradient": [
+              0.0,
+              0.314810467759008,
+              -0.314810467759008
+            ]
+          },
+          {
+            "counts": [
+              0,
+              8,
+              0
+            ],
+            "probability": {
+              "fraction": "6561/65536",
+              "decimal": 0.1001129150390625
+            },
+            "mean_score": {
+              "fraction": "1/20",
+              "decimal": 0.05
+            },
+            "std": 0.0,
+            "advantages_by_action": [
+              1.45,
+              0.0,
+              -0.05
+            ],
+            "group_gradient": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              1,
+              0,
+              7
+            ],
+            "probability": {
+              "fraction": "3404825447/625000000000000",
+              "decimal": 5.4477207152e-06
+            },
+            "mean_score": {
+              "fraction": "3/16",
+              "decimal": 0.1875
+            },
+            "std": 0.5303300858899106,
+            "advantages_by_action": [
+              3.787369067495049,
+              -0.3967719975471004,
+              -0.5410527239278642
+            ],
+            "group_gradient": [
+              0.4734211334368811,
+              5.551115123125783e-17,
+              -0.4734211334368812
+            ]
+          },
+          {
+            "counts": [
+              1,
+              1,
+              6
+            ],
+            "probability": {
+              "fraction": "3108753669/25000000000000",
+              "decimal": 0.00012435014676
+            },
+            "mean_score": {
+              "fraction": "31/160",
+              "decimal": 0.19375
+            },
+            "std": 0.5280946208506848,
+            "advantages_by_action": [
+              3.7797603803660067,
+              -0.4159544916192256,
+              -0.5606343147911302
+            ],
+            "group_gradient": [
+              0.47247004754575084,
+              -0.05199431145240324,
+              -0.42047573609334765
+            ]
+          },
+          {
+            "counts": [
+              1,
+              2,
+              5
+            ],
+            "probability": {
+              "fraction": "1216468827/1000000000000",
+              "decimal": 0.001216468827
+            },
+            "mean_score": {
+              "fraction": "1/5",
+              "decimal": 0.2
+            },
+            "std": 0.5257647491307984,
+            "advantages_by_action": [
+              3.7725840398488755,
+              -0.435298158444101,
+              -0.5803975445921348
+            ],
+            "group_gradient": [
+              0.4715730049811094,
+              -0.10882453961102517,
+              -0.3627484653700842
+            ]
+          },
+          {
+            "counts": [
+              1,
+              3,
+              4
+            ],
+            "probability": {
+              "fraction": "52889949/8000000000",
+              "decimal": 0.006611243625
+            },
+            "mean_score": {
+              "fraction": "33/160",
+              "decimal": 0.20625
+            },
+            "std": 0.523339209854783,
+            "advantages_by_action": [
+              3.765851274922084,
+              -0.4548129559084642,
+              -0.6003531017991728
+            ],
+            "group_gradient": [
+              0.4707314093652605,
+              -0.1705548584656741,
+              -0.3001765508995864
+            ]
+          },
+          {
+            "counts": [
+              1,
+              4,
+              3
+            ],
+            "probability": {
+              "fraction": "6898689/320000000",
+              "decimal": 0.021558403125
+            },
+            "mean_score": {
+              "fraction": "17/80",
+              "decimal": 0.2125
+            },
+            "std": 0.5208166663999915,
+            "advantages_by_action": [
+              3.7595743612625294,
+              -0.4745093854020668,
+              -0.6205122732180873
+            ],
+            "group_gradient": [
+              0.4699467951578162,
+              -0.2372546927010334,
+              -0.23269210245678273
+            ]
+          },
+          {
+            "counts": [
+              1,
+              5,
+              2
+            ],
+            "probability": {
+              "fraction": "2699487/64000000",
+              "decimal": 0.042179484375
+            },
+            "mean_score": {
+              "fraction": "7/32",
+              "decimal": 0.21875
+            },
+            "std": 0.5181957021379913,
+            "advantages_by_action": [
+              3.7537667001522412,
+              -0.49439854099566105,
+              -0.640886997586968
+            ],
+            "group_gradient": [
+              0.46922083751903015,
+              -0.30899908812228816,
+              -0.160221749396742
+            ]
+          },
+          {
+            "counts": [
+              1,
+              6,
+              1
+            ],
+            "probability": {
+              "fraction": "117369/2560000",
+              "decimal": 0.045847265625
+            },
+            "mean_score": {
+              "fraction": "9/40",
+              "decimal": 0.225
+            },
+            "std": 0.5154748157905348,
+            "advantages_by_action": [
+              3.7484429064235676,
+              -0.5144921636267641,
+              -0.6614899246629825
+            ],
+            "group_gradient": [
+              0.4685553633029459,
+              -0.3858691227200731,
+              -0.08268624058287283
+            ]
+          },
+          {
+            "counts": [
+              1,
+              7,
+              0
+            ],
+            "probability": {
+              "fraction": "2187/102400",
+              "decimal": 0.021357421875
+            },
+            "mean_score": {
+              "fraction": "37/160",
+              "decimal": 0.23125
+            },
+            "std": 0.5126524163602469,
+            "advantages_by_action": [
+              3.7436189065761267,
+              -0.5348027009394466,
+              -0.6823344805089491
+            ],
+            "group_gradient": [
+              0.46795236332201584,
+              -0.4679523633220158,
+              -1.3877787807814457e-17
+            ]
+          },
+          {
+            "counts": [
+              2,
+              0,
+              6
+            ],
+            "probability": {
+              "fraction": "1036251223/625000000000000",
+              "decimal": 1.6580019568e-06
+            },
+            "mean_score": {
+              "fraction": "3/8",
+              "decimal": 0.375
+            },
+            "std": 0.6943650748294136,
+            "advantages_by_action": [
+              2.7451828412719923,
+              -0.7930528208119089,
+              -0.915060947090664
+            ],
+            "group_gradient": [
+              0.6862957103179981,
+              -1.1102230246251565e-16,
+              -0.6862957103179981
+            ]
+          },
+          {
+            "counts": [
+              2,
+              1,
+              5
+            ],
+            "probability": {
+              "fraction": "405489609/12500000000000",
+              "decimal": 3.243916872e-05
+            },
+            "mean_score": {
+              "fraction": "61/160",
+              "decimal": 0.38125
+            },
+            "std": 0.6907229649329131,
+            "advantages_by_action": [
+              2.7384274063118816,
+              -0.8108192879024008,
+              -0.9332071049442726
+            ],
+            "group_gradient": [
+              0.6846068515779703,
+              -0.10135241098780001,
+              -0.5832544405901704
+            ]
+          },
+          {
+            "counts": [
+              2,
+              2,
+              4
+            ],
+            "probability": {
+              "fraction": "52889949/200000000000",
+              "decimal": 0.000264449745
+            },
+            "mean_score": {
+              "fraction": "31/80",
+              "decimal": 0.3875
+            },
+            "std": 0.6869965689246823,
+            "advantages_by_action": [
+              2.7318652646272565,
+              -0.8287681139880441,
+              -0.9515485753196062
+            ],
+            "group_gradient": [
+              0.6829663161568141,
+              -0.20719202849701102,
+              -0.4757742876598031
+            ]
+          },
+          {
+            "counts": [
+              2,
+              3,
+              3
+            ],
+            "probability": {
+              "fraction": "2299563/2000000000",
+              "decimal": 0.0011497815
+            },
+            "mean_score": {
+              "fraction": "63/160",
+              "decimal": 0.39375
+            },
+            "std": 0.6831845076028666,
+            "advantages_by_action": [
+              2.7255027325141374,
+              -0.8469076287473309,
+              -0.9700941929287608
+            ],
+            "group_gradient": [
+              0.6813756831285345,
+              -0.31759036078024916,
+              -0.3637853223482853
+            ]
+          },
+          {
+            "counts": [
+              2,
+              4,
+              2
+            ],
+            "probability": {
+              "fraction": "899829/320000000",
+              "decimal": 0.002811965625
+            },
+            "mean_score": {
+              "fraction": "2/5",
+              "decimal": 0.4
+            },
+            "std": 0.6792853387410709,
+            "advantages_by_action": [
+              2.719346566042595,
+              -0.8652466346499165,
+              -0.9888532967427618
+            ],
+            "group_gradient": [
+              0.6798366415106487,
+              -0.4326233173249582,
+              -0.24721332418569048
+            ]
+          },
+          {
+            "counts": [
+              2,
+              5,
+              1
+            ],
+            "probability": {
+              "fraction": "117369/32000000",
+              "decimal": 0.00366778125
+            },
+            "mean_score": {
+              "fraction": "13/32",
+              "decimal": 0.40625
+            },
+            "std": 0.6752975534638681,
+            "advantages_by_action": [
+              2.7134039950955504,
+              -0.8837944441168364,
+              -1.0078357696069187
+            ],
+            "group_gradient": [
+              0.6783509987738876,
+              -0.5523715275730228,
+              -0.12597947120086483
+            ]
+          },
+          {
+            "counts": [
+              2,
+              6,
+              0
+            ],
+            "probability": {
+              "fraction": "5103/2560000",
+              "decimal": 0.001993359375
+            },
+            "mean_score": {
+              "fraction": "33/80",
+              "decimal": 0.4125
+            },
+            "std": 0.6712195723350998,
+            "advantages_by_action": [
+              2.7076827608124576,
+              -0.9025609202708191,
+              -1.027052081687484
+            ],
+            "group_gradient": [
+              0.6769206902031144,
+              -0.6769206902031144,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              3,
+              0,
+              5
+            ],
+            "probability": {
+              "fraction": "45054401/156250000000000",
+              "decimal": 2.883481664e-07
+            },
+            "mean_score": {
+              "fraction": "9/16",
+              "decimal": 0.5625
+            },
+            "std": 0.7763237542601484,
+            "advantages_by_action": [
+              2.1451131732955684,
+              -1.1726618680682437,
+              -1.287067903977341
+            ],
+            "group_gradient": [
+              0.8044174399858381,
+              0.0,
+              -0.8044174399858381
+            ]
+          },
+          {
+            "counts": [
+              3,
+              1,
+              4
+            ],
+            "probability": {
+              "fraction": "5876661/1250000000000",
+              "decimal": 4.7013288e-06
+            },
+            "mean_score": {
+              "fraction": "91/160",
+              "decimal": 0.56875
+            },
+            "std": 0.7713334928180269,
+            "advantages_by_action": [
+              2.138573163518503,
+              -1.1912857219599715,
+              -1.3061084421488842
+            ],
+            "group_gradient": [
+              0.8019649363194385,
+              -0.14891071524499638,
+              -0.6530542210744421
+            ]
+          },
+          {
+            "counts": [
+              3,
+              2,
+              3
+            ],
+            "probability": {
+              "fraction": "766521/25000000000",
+              "decimal": 3.066084e-05
+            },
+            "mean_score": {
+              "fraction": "23/40",
+              "decimal": 0.575
+            },
+            "std": 0.7662524761087935,
+            "advantages_by_action": [
+              2.1321723376673694,
+              -1.2101518673247231,
+              -1.3254044261175537
+            ],
+            "group_gradient": [
+              0.7995646266252634,
+              -0.3025379668311809,
+              -0.4970266597940827
+            ]
+          },
+          {
+            "counts": [
+              3,
+              3,
+              2
+            ],
+            "probability": {
+              "fraction": "99981/1000000000",
+              "decimal": 9.9981e-05
+            },
+            "mean_score": {
+              "fraction": "93/160",
+              "decimal": 0.58125
+            },
+            "std": 0.7610788864687887,
+            "advantages_by_action": [
+              2.1259163124126945,
+              -1.229271337109381,
+              -1.3449674629549702
+            ],
+            "group_gradient": [
+              0.7972186171547604,
+              -0.4609767514160179,
+              -0.33624186573874254
+            ]
+          },
+          {
+            "counts": [
+              3,
+              4,
+              1
+            ],
+            "probability": {
+              "fraction": "13041/80000000",
+              "decimal": 0.0001630125
+            },
+            "mean_score": {
+              "fraction": "47/80",
+              "decimal": 0.5875
+            },
+            "std": 0.7558108228915488,
+            "advantages_by_action": [
+              2.1198110956494447,
+              -1.2486558508620016,
+              -1.3648098835003277
+            ],
+            "group_gradient": [
+              0.7949291608685418,
+              -0.6243279254310008,
+              -0.170601235437541
+            ]
+          },
+          {
+            "counts": [
+              3,
+              5,
+              0
+            ],
+            "probability": {
+              "fraction": "1701/16000000",
+              "decimal": 0.0001063125
+            },
+            "mean_score": {
+              "fraction": "19/32",
+              "decimal": 0.59375
+            },
+            "std": 0.7504462957848103,
+            "advantages_by_action": [
+              2.1138631196558615,
+              -1.268317871793517,
+              -1.3849448025331508
+            ],
+            "group_gradient": [
+              0.7926986698709481,
+              -0.7926986698709481,
+              2.7755575615628914e-17
+            ]
+          },
+          {
+            "counts": [
+              4,
+              0,
+              4
+            ],
+            "probability": {
+              "fraction": "1958887/62500000000000",
+              "decimal": 3.1342192e-08
+            },
+            "mean_score": {
+              "fraction": "3/4",
+              "decimal": 0.75
+            },
+            "std": 0.8017837257372732,
+            "advantages_by_action": [
+              1.6854131800282737,
+              -1.573052301359722,
+              -1.6854131800282737
+            ],
+            "group_gradient": [
+              0.8427065900141368,
+              0.0,
+              -0.8427065900141368
+            ]
+          },
+          {
+            "counts": [
+              4,
+              1,
+              3
+            ],
+            "probability": {
+              "fraction": "255507/625000000000",
+              "decimal": 4.088112e-07
+            },
+            "mean_score": {
+              "fraction": "121/160",
+              "decimal": 0.75625
+            },
+            "std": 0.7952706188102621,
+            "advantages_by_action": [
+              1.6789650666619549,
+              -1.5943113658218564,
+              -1.7071829669419878
+            ],
+            "group_gradient": [
+              0.8394825333309774,
+              -0.19928892072773197,
+              -0.6401936126032455
+            ]
+          },
+          {
+            "counts": [
+              4,
+              2,
+              2
+            ],
+            "probability": {
+              "fraction": "99981/50000000000",
+              "decimal": 1.99962e-06
+            },
+            "mean_score": {
+              "fraction": "61/80",
+              "decimal": 0.7625
+            },
+            "std": 0.7886471236961977,
+            "advantages_by_action": [
+              1.6726445566668198,
+              -1.6159447411865886,
+              -1.7293443721470507
+            ],
+            "group_gradient": [
+              0.8363222783334098,
+              -0.4039861852966472,
+              -0.4323360930367627
+            ]
+          },
+          {
+            "counts": [
+              4,
+              3,
+              1
+            ],
+            "probability": {
+              "fraction": "4347/1000000000",
+              "decimal": 4.347e-06
+            },
+            "mean_score": {
+              "fraction": "123/160",
+              "decimal": 0.76875
+            },
+            "std": 0.7819104351339919,
+            "advantages_by_action": [
+              1.6664582181464573,
+              -1.6379717528789968,
+              -1.75191761394884
+            ],
+            "group_gradient": [
+              0.8332291090732287,
+              -0.6142394073296237,
+              -0.21898970174360496
+            ]
+          },
+          {
+            "counts": [
+              4,
+              4,
+              0
+            ],
+            "probability": {
+              "fraction": "567/160000000",
+              "decimal": 3.54375e-06
+            },
+            "mean_score": {
+              "fraction": "31/40",
+              "decimal": 0.775
+            },
+            "std": 0.7750576015460308,
+            "advantages_by_action": [
+              1.6604131397984907,
+              -1.6604131397984907,
+              -1.7749243908190762
+            ],
+            "group_gradient": [
+              0.8302065698992454,
+              -0.8302065698992454,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              5,
+              0,
+              3
+            ],
+            "probability": {
+              "fraction": "85169/39062500000000",
+              "decimal": 2.1803264e-09
+            },
+            "mean_score": {
+              "fraction": "15/16",
+              "decimal": 0.9375
+            },
+            "std": 0.7763237542601484,
+            "advantages_by_action": [
+              1.287067903977341,
+              -2.030707137386471,
+              -2.1451131732955684
+            ],
+            "group_gradient": [
+              0.8044174399858381,
+              0.0,
+              -0.8044174399858381
+            ]
+          },
+          {
+            "counts": [
+              5,
+              1,
+              2
+            ],
+            "probability": {
+              "fraction": "33327/1562500000000",
+              "decimal": 2.132928e-08
+            },
+            "mean_score": {
+              "fraction": "151/160",
+              "decimal": 0.94375
+            },
+            "std": 0.7678529900219926,
+            "advantages_by_action": [
+              1.2806715791391121,
+              -2.0577082676055403,
+              -2.1728248140450104
+            ],
+            "group_gradient": [
+              0.8004197369619451,
+              -0.2572135334506925,
+              -0.5432062035112526
+            ]
+          },
+          {
+            "counts": [
+              5,
+              2,
+              1
+            ],
+            "probability": {
+              "fraction": "4347/62500000000",
+              "decimal": 6.9552e-08
+            },
+            "mean_score": {
+              "fraction": "19/20",
+              "decimal": 0.95
+            },
+            "std": 0.7592289321598403,
+            "advantages_by_action": [
+              1.274418225234314,
+              -2.0854116412925134,
+              -2.2012678435865416
+            ],
+            "group_gradient": [
+              0.7965113907714462,
+              -0.5213529103231285,
+              -0.2751584804483177
+            ]
+          },
+          {
+            "counts": [
+              5,
+              3,
+              0
+            ],
+            "probability": {
+              "fraction": "189/2500000000",
+              "decimal": 7.56e-08
+            },
+            "mean_score": {
+              "fraction": "153/160",
+              "decimal": 0.95625
+            },
+            "std": 0.7504462957848103,
+            "advantages_by_action": [
+              1.268317871793517,
+              -2.1138631196558615,
+              -2.2304900503954954
+            ],
+            "group_gradient": [
+              0.7926986698709482,
+              -0.7926986698709482,
+              -2.7755575615628914e-17
+            ]
+          },
+          {
+            "counts": [
+              6,
+              0,
+              2
+            ],
+            "probability": {
+              "fraction": "3703/39062500000000",
+              "decimal": 9.47968e-11
+            },
+            "mean_score": {
+              "fraction": "9/8",
+              "decimal": 1.125
+            },
+            "std": 0.6943650748294136,
+            "advantages_by_action": [
+              0.915060947090664,
+              -2.6231747149932367,
+              -2.7451828412719923
+            ],
+            "group_gradient": [
+              0.686295710317998,
+              1.1102230246251565e-16,
+              -0.6862957103179981
+            ]
+          },
+          {
+            "counts": [
+              6,
+              1,
+              1
+            ],
+            "probability": {
+              "fraction": "483/781250000000",
+              "decimal": 6.1824e-10
+            },
+            "mean_score": {
+              "fraction": "181/160",
+              "decimal": 1.13125
+            },
+            "std": 0.6829230766136319,
+            "advantages_by_action": [
+              0.9087075335350526,
+              -2.664515310196002,
+              -2.787729891014314
+            ],
+            "group_gradient": [
+              0.6815306501512893,
+              -0.33306441377450013,
+              -0.3484662363767892
+            ]
+          },
+          {
+            "counts": [
+              6,
+              2,
+              0
+            ],
+            "probability": {
+              "fraction": "63/62500000000",
+              "decimal": 1.008e-09
+            },
+            "mean_score": {
+              "fraction": "91/80",
+              "decimal": 1.1375
+            },
+            "std": 0.6712195723350998,
+            "advantages_by_action": [
+              0.9025609202708191,
+              -2.7076827608124576,
+              -2.8321739222291225
+            ],
+            "group_gradient": [
+              0.6769206902031144,
+              -0.6769206902031144,
+              0.0
+            ]
+          },
+          {
+            "counts": [
+              7,
+              0,
+              1
+            ],
+            "probability": {
+              "fraction": "23/9765625000000",
+              "decimal": 2.3552e-12
+            },
+            "mean_score": {
+              "fraction": "21/16",
+              "decimal": 1.3125
+            },
+            "std": 0.5303300858899106,
+            "advantages_by_action": [
+              0.5410527239278642,
+              -3.643088341114286,
+              -3.787369067495049
+            ],
+            "group_gradient": [
+              0.47342113343688114,
+              -5.551115123125783e-17,
+              -0.4734211334368812
+            ]
+          },
+          {
+            "counts": [
+              7,
+              1,
+              0
+            ],
+            "probability": {
+              "fraction": "3/390625000000",
+              "decimal": 7.68e-12
+            },
+            "mean_score": {
+              "fraction": "211/160",
+              "decimal": 1.31875
+            },
+            "std": 0.5126524163602469,
+            "advantages_by_action": [
+              0.5348027009394466,
+              -3.7436189065761267,
+              -3.891150686145629
+            ],
+            "group_gradient": [
+              0.4679523633220158,
+              -0.46795236332201584,
+              1.3877787807814457e-17
+            ]
+          },
+          {
+            "counts": [
+              8,
+              0,
+              0
+            ],
+            "probability": {
+              "fraction": "1/39062500000000",
+              "decimal": 2.56e-14
+            },
+            "mean_score": {
+              "fraction": "3/2",
+              "decimal": 1.5
+            },
+            "std": 0.0,
+            "advantages_by_action": [
+              0.0,
+              -1.45,
+              -1.5
+            ],
+            "group_gradient": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "success_derivative": -0.000823033652568046,
+        "score_derivative": 0.003783242702865156
+      }
+    },
+    "no_standardization": {
+      "2": {
+        "gradient": [
+          {
+            "fraction": "573/20000",
+            "decimal": 0.02865
+          },
+          {
+            "fraction": "-21/1600",
+            "decimal": -0.013125
+          },
+          {
+            "fraction": "-621/40000",
+            "decimal": -0.015525
+          }
+        ],
+        "success_derivative": {
+          "fraction": "82983/100000000",
+          "decimal": 0.00082983
+        },
+        "raw_score_multiplier": {
+          "fraction": "1",
+          "decimal": 1.0
+        }
+      },
+      "8": {
+        "gradient": [
+          {
+            "fraction": "4011/80000",
+            "decimal": 0.0501375
+          },
+          {
+            "fraction": "-147/6400",
+            "decimal": -0.02296875
+          },
+          {
+            "fraction": "-4347/160000",
+            "decimal": -0.02716875
+          }
+        ],
+        "success_derivative": {
+          "fraction": "580881/400000000",
+          "decimal": 0.0014522025
+        },
+        "raw_score_multiplier": {
+          "fraction": "7/4",
+          "decimal": 1.75
+        }
+      }
+    },
+    "large_group_success_derivative_epsilon_1e_6": 0.004863687986775827,
+    "tiny_b_1e_9_G2_success_derivative_epsilon_1e_6": 0.0009453890440468082
+  },
+  "all_checks_passed": true
+}

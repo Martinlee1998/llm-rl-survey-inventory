@@ -1,47 +1,46 @@
-# LLM-RL Survey Online Inventory
+# LLM–RL Survey: Sources, Evidence, and Analytical Checks
 
-This repository provides the linked study inventory for the survey manuscript:
+Companion materials for the revised manuscript:
 
 **Enhancing Reinforcement Learning with Large Language Models: A Survey of Grounded Reward, Policy, and Environment Interfaces**
 
-The repository contains metadata only. It does not redistribute copyrighted paper PDFs.
+This repository connects the survey's comparisons to the original studies. It contains the source register and evidence matrix supplied in **Online Resource 1**, together with the mathematical supplement and its reproduction code.
 
-## Files
+Current manuscript version: **21 October 2026**.
 
-- `inventory.csv`: tabular linked inventory for review and spreadsheet use.
-- `inventory.json`: the same inventory in structured JSON form.
-- `references.bib`: selected BibTeX entries corresponding to the inventory rows.
+## Start here
 
-## Current Coverage
+| Material | Contents |
+| --- | --- |
+| [Source register](public_sources.csv) · [JSON](public_sources.json) | 52 cited works: 37 primary method or empirical studies, 14 related surveys, and one foundational theory paper. Records identify the publication, the version read, public links, and its role in the manuscript. |
+| [Evidence matrix](evidence_matrix.csv) · [JSON](evidence_matrix.json) | 82 records connecting specific claims to source pages, figures, tables, equations, and comparison conditions. A source can support several records. |
+| [Data guide](DATA_GUIDE.txt) | Field descriptions, page-number conventions, evidence identifiers, and suggested routes through the comparisons. |
+| [References](references.bib) | BibTeX entries for the 52 works in the source register. |
+| [Mathematical supplement](math/mathematical_checks.pdf) | The reward-to-update analyses, with source formulas, derivations, and constructed examples. [TeX source](math/mathematical_checks.tex) and [reproduction instructions](math/README.txt) are included. |
 
-Last updated: 2026-06-22.
+The evidence matrix supports the survey's analysis of guidance quality and learning utility, policy adaptation and transfer, and the use of generated tasks and curricula. Each record distinguishes a study's reported comparison from the interpretation developed in the survey. These materials document the sources used in this manuscript; they are not an exhaustive bibliography of the field.
 
-- Total inventory rows: 38
-- In-scope studies: 27
-- Adjacent exemplars: 11
-- Primary interface counts among in-scope rows: Reward 13, Policy 9, Environment 5
-- DOI coverage: 37 of 38 rows
+## Reproduce the analytical checks
 
-`Progress Reward Model for Reinforcement Learning via Large Language Models` is linked to its official OpenReview page, but its DOI is left blank because no verified DOI was found during this update.
+Use Python 3.9 or later. The programs require only the standard library.
 
-## Columns
+```sh
+python math/reproduce_checks.py --output comparison_results.json
+python math/reproduce_calibration_family.py --output family_results.json
+```
 
-- `study`: short study name used in the manuscript table.
-- `citation_key`: BibTeX key from the manuscript source.
-- `title`, `authors`, `year`, `venue`: bibliographic metadata.
-- `primary_interface`: Reward, Policy, or Environment.
-- `secondary_tags`: compact methodological tags from the appendix inventory.
-- `domain_benchmark_family`: domain or benchmark family used in the study.
-- `rl_update`: whether the paper reports a reinforcement-learning update rather than only planning, prompting, or evaluation.
-- `status`: `in scope` or `adjacent exemplar`.
-- `inventory_group`: manuscript appendix group.
-- `doi`, `doi_url`: verified DOI and resolver link when available.
-- `url`: stable public landing page, publisher page, OpenReview page, PMLR page, NeurIPS page, or arXiv page.
-- `link_type`: broad source type for the public link.
-- `metadata_source`, `metadata_notes`: provenance notes for the linked metadata.
+On Windows, `py` can replace `python`. Both programs print `PASS` when their checks succeed. The reference outputs are [results.json](math/results.json) and [reproduce_calibration_family.results.json](math/reproduce_calibration_family.results.json).
 
-## DOI Policy
+These programs check the survey's mathematical constructions. They do not run the original papers' policy-training experiments. The assumptions and source versions are described in the [mathematical supplement](math/README.txt).
 
-DOIs are included only when they were already present in the manuscript BibTeX or could be verified through exact-title public metadata. For arXiv records, the DOI uses the standard `10.48550/arXiv.<id>` form only when the arXiv identifier was verified. If no DOI could be verified, the DOI field is intentionally blank rather than guessed.
+## Relationship to the June inventory
 
-Some papers have both a conference/publisher page and an arXiv version. When no publisher DOI was found, the inventory uses the verified arXiv DOI while preserving the most stable public landing page in `url`.
+The June 2026 version contained 38 study-level entries: 27 in-scope studies and 11 adjacent exemplars. The October register follows the revised manuscript's full bibliography, including related surveys and theory. The two totals therefore describe different sets of sources.
+
+The former `inventory.csv` and `inventory.json` have been replaced by `public_sources.*` and `evidence_matrix.*`. The June files remain available in Git history under the tag `june-2026-inventory`. Use the current register for the revised manuscript; the historical inventory has not been retrospectively corrected. See the [change log](CHANGELOG.md) for the migration details.
+
+## Source access and corrections
+
+Public links identify the original papers and the versions consulted. Third-party paper PDFs are not redistributed here; the included PDF is the survey's own mathematical supplement.
+
+To report a correction, open an issue with the `citation_key` or `evidence_id`, the relevant source page, and the proposed change.

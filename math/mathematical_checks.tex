@@ -1,0 +1,481 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array}
+\usepackage[authoryear,round]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+\setlength{\emergencystretch}{1.5em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\sgn}{\operatorname{sign}}
+\title{Online Resource 1: Mathematical checks of\protect\\ reward-to-update claims}
+\author{Yanqi Li\\University of Southern Queensland\\\texttt{Yanqi.Li@unisq.edu.au}}
+\date{}
+\begin{document}
+\begin{center}
+{\large\bfseries Online Resource 1: Mathematical checks of reward-to-update claims}\par
+\vspace{7pt}
+Yanqi Li\\University of Southern Queensland\\\texttt{Yanqi.Li@unisq.edu.au}
+\end{center}
+
+Supplement to \emph{Enhancing Reinforcement Learning with Large Language Models: A Survey of Grounded Reward, Policy, and Environment Interfaces}, submitted to \emph{Artificial Intelligence Review}.
+
+This note gives the complete constructions behind the survey's two checks: preservation of discounted task preferences, and the passage from reward quality to a policy update. It connects each construction to a published formula in ARM-FM, SWE-RM, or ProCredit. The numerical results below are analytical examples constructed for the survey; they are not measurements from those papers' training runs. Two accompanying standard-library Python programs check the constructions: one reproduces the numerical examples by exact arithmetic and exhaustive enumeration; the other verifies the calibrated family using exact identities, fixed-seed numerical checks, finite differences, and independent group enumeration. Neither program trains a policy.
+
+\section{Discounted preferences under ARM-FM}
+\label{sec:arm}
+
+\paragraph{Source condition and learning target.}
+Appendix A.5 of \citet{Castanyer2026ARMFM} states optimal-policy preservation when a reward machine has no positive-reward cycles and its terminal reward exceeds the cumulative reward of every nonterminal trajectory. Its DQN implementation adds the task and machine rewards. With environment state $s$, machine state $u$, language embedding $\phi(u)$, next-state quantities $s',u'$, terminal indicator $d$, and target network $\widehat Q$, Algorithm~1, line~20 (PDF p.~19), gives
+\begin{equation}
+y=r_{\rm task}+r_{\rm RM}
+  +\gamma(1-d)\max_{a'}\widehat Q(s',\phi(u'),a').
+\label{eq:dqn}
+\end{equation}
+
+\paragraph{Construction.}
+Consider a deterministic episodic task with initial state $s$, intermediate state $x$, and terminal goal $g$. One action reaches $g$ immediately; another reaches $x$, from which the next action reaches $g$. The task pays one on entry to $g$ and zero otherwise. Its discount is $\gamma=.99$.
+
+The reward machine accurately recognizes entry to $x$ and task completion. It accepts completion on either route; the intermediate event is optional for this task. Such optional events are permitted by the published formalism: the Meta-World machine includes both a direct $u_0\to u_2$ grasp transition and a route through $u_1$ that earns an additional near-object reward \citep[Appendix A.9, PDF p.~32]{Castanyer2026ARMFM}. The constructed machine pays $b=.2$ at $x$ and one at $g$. There are no positive-reward cycles; unused events can have zero-reward self-loops. Every nonterminal reward total is at most $.2$, strictly below the terminal reward one. Both conditions in the source are satisfied.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lrrr}
+\toprule
+Path & Task return & Machine return & Additive return\\
+\midrule
+$s\to g$ & $1$ & $1$ & $2$\\
+$s\to x\to g$ & $.99$ & $.2+.99=1.19$ & $.2+2(.99)=2.18$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The task prefers immediate completion, whereas the machine-only and additive objectives prefer the delayed path. At the Bellman fixed point of Eq.~\eqref{eq:dqn}, the terminal target is two. The delayed action therefore has value $.2+.99(2)=2.18$, above the direct action's value two. This is a comparison of the target's fixed-point preferences, not the first network update from an arbitrary initialization.
+
+For a general intermediate bonus $b$, the machine-only reversal requires $b>1-\gamma$; the additive reversal requires
+\begin{equation}
+b>2(1-\gamma).
+\label{eq:rmthreshold}
+\end{equation}
+The source's requirement $b<1$ does not exclude either. Both constructed paths succeed. The counterexample concerns discounted preference preservation, not a failed trajectory outranking completion, and it does not establish failure in the source's experimental tasks.
+
+\section{Calibration and a policy-gradient direction}
+\label{sec:calibration}
+
+\subsection{The missing conditional covariance}
+For a trajectory $\tau$, let $r(\tau)$ be a fixed predicted score, $c(\tau)\in\{0,1\}$ its correctness, and
+$h(\tau)=\nabla_\theta\log\pi_\theta(\tau)$ its policy score function. Define $J_f(\theta)=\E_{\pi_\theta}[f]$. Appendix C.3 of \citet{Shum2026SWE_RM} states calibration without a uniform-in-policy qualification. At a fixed sampling policy, this condition is
+\begin{equation}
+\E[c\mid r]=r
+\label{eq:calibration}
+\end{equation}
+From this condition, the source infers equality of $\E[rh]$ and $\E[ch]$ (source Eq.~12, PDF p.~16). Under the usual differentiability conditions for a fixed evaluator,
+\begin{align}
+\nabla J_r-\nabla J_c
+ &=\E[(r-c)h] \nonumber\\
+ &=-\E[\Cov(c,h\mid r)].
+\label{eq:covariance}
+\end{align}
+To see the second equality, condition on $r$ and use
+$\E[ch\mid r]=\E[c\mid r]\E[h\mid r]+\Cov(c,h\mid r)$.
+Calibration fixes the average correctness within a score group. It does not force the policy sensitivities of correct and incorrect trajectories in that group to agree.
+
+\subsection{An exactly calibrated three-action example}
+Consider a one-step task with three actions and independent softmax logits:
+\[
+\pi_z(i)=\frac{\exp(z_i)}{\sum_j\exp(z_j)},\qquad z_i^0=\log p_i.
+\]
+Use the following probabilities, correctness labels, and scores:
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+Action $i$ & $p_i$ & $c_i$ & $r_i$\\
+\midrule
+1 & $.1$ & $1$ & $1$\\
+2 & $.6$ & $1$ & $2/3$\\
+3 & $.3$ & $0$ & $2/3$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The evaluator is exactly calibrated: the score-one action is correct, and correctness in the lower-score group is $.6/(.6+.3)=2/3$. Both expected score and success equal $.7$.
+
+For fixed values $f_i$,
+\begin{equation}
+\left.\partial_{z_i}J_f\right|_{z^0}=p_i(f_i-J_f).
+\label{eq:logit}
+\end{equation}
+Thus the success and score gradients are
+\begin{equation}
+g_c=(.03,.18,-.21),\qquad g_r=(.03,-.02,-.01).
+\label{eq:gcgr}
+\end{equation}
+Along an ordinary Euclidean logit step $z(\eta)=z^0+\eta g_r$,
+\begin{equation}
+\left.\frac{dJ_r}{d\eta}\right|_0=\lVert g_r\rVert^2=.0014,
+\qquad
+\left.\frac{dJ_c}{d\eta}\right|_0=g_c^\top g_r=-.0006.
+\label{eq:local}
+\end{equation}
+A sufficiently small positive step increases score and decreases success. No later distribution shift is needed to obtain this local discrepancy. Calibration throughout a neighborhood of policies would instead imply equality of the two objectives there, and hence equality of their gradients. That is stronger than Eq.~\eqref{eq:calibration} at one policy.
+
+\subsection{A family of calibrated base policies}
+\label{sec:calibration_family}
+For $a,b,d>0$ with $a+b+d=1$, write $m=1-a=b+d$ and set
+\begin{equation}
+ p=(a,b,d),\qquad c=(1,1,0),\qquad
+ r=\left(1,\frac{b}{m},\frac{b}{m}\right).
+ \label{eq:family_setup}
+\end{equation}
+The score-one action is correct, and correctness conditional on the lower
+score is $b/m$, so the evaluator is exactly calibrated at $p$.
+For each chosen base point, freeze these scores and define
+$J_f(z)=\sum_i\pi_z(i)f_i$, where
+$\pi_z(i)=e^{z_i}/\sum_j e^{z_j}$ and $z_i^0=\log p_i$.
+The gradients below are evaluated in the full three-logit space at $z^0$.
+They do not differentiate the rule that constructs $r$ from the base point.
+
+Since $J_c(z^0)=J_r(z^0)=1-d$ and
+$\partial_{z_i}J_f=p_i(f_i-J_f)$, direct calculation gives
+\begin{align}
+ g_c&=d\bigl(a,b,-(1-d)\bigr),\nonumber\\
+ g_r&=ad\left(1,-\frac b m,-\frac d m\right),\label{eq:family_gradients}\\
+ g_c-g_r&=\frac{bd}{m}(0,1,-1).\nonumber
+\end{align}
+Thus the gradient equality fails at every interior point in this family,
+including points where the two gradients still have a positive inner product.
+The stronger condition of a negative success derivative is
+\begin{align}
+ g_c^\top g_r
+ &=\frac{ad^2}{m}\left[am-b^2+d(1-d)\right]\nonumber\\
+ &=\frac{ad^2}{1-a}B(a,d),\label{eq:family_dot}\\
+ B(a,d)&=(1-a)(2a-1)+(3-2a)d-2d^2.\nonumber
+\end{align}
+The prefactor is positive in the interior. Also $g_r\ne0$, so an ordinary
+Euclidean step $z^0+\eta g_r$ has
+$\dot J_r(0)=\lVert g_r\rVert^2>0$ and
+$\dot J_c(0)<0$ precisely when $B(a,d)<0$.
+Smoothness then gives the corresponding strict changes for all sufficiently
+small positive step sizes.
+
+\paragraph{The complete strict negative region.}
+For fixed $a$, $B$ is a concave quadratic in $d$ on $[0,1-a]$.
+Its endpoint values are $(1-a)(2a-1)$ and $2a(1-a)$.
+For $a\geq1/2$, both endpoints are nonnegative and the interior is positive.
+For $0<a<1/2$, the lower root lies inside this interval and the upper root
+lies beyond it. Hence the complete interior region is
+\begin{equation}
+ 0<a<\frac12,\qquad
+ 0<d<d_*(a):=
+ \frac{3-2a-\sqrt{1+12a(1-a)}}4.
+ \label{eq:family_negative_region}
+\end{equation}
+At $a=1/10$,
+\begin{equation}
+ d_*(1/10)=\frac{7-\sqrt{13}}{10}
+ =0.3394448724536011\ldots.
+ \label{eq:family_slice_root}
+\end{equation}
+For example, the open rectangle
+$a\in(.09,.11)$, $d\in(.29,.31)$ lies wholly in the negative region.
+Both partial derivatives of $B$ are positive there, while its supremum
+at the upper corner is $B(.11,.31)=-.0246$.
+This establishes a set of positive two-dimensional measure in the
+base-policy construction, rather than an isolated numerical example.
+Across this two-dimensional set, the selected score $b/(1-a)$ can change.
+It is not a claim that one fixed evaluator remains calibrated on an open
+neighborhood of the full policy simplex, nor an estimate of how often a
+trained system encounters this region.
+
+\paragraph{A fixed evaluator and a simpler parametrization.}
+Put $q=b/(1-a)$, so that
+$p=(a,(1-a)q,(1-a)(1-q))$ and $r=(1,q,q)$.
+Equation~\eqref{eq:family_dot} becomes
+\begin{equation}
+ g_c^\top g_r
+ =a(1-a)^2(1-q)^2
+ \left[2a(q^2-q+1)-q(2q-1)\right].
+ \label{eq:family_q_dot}
+\end{equation}
+Consequently, its strict negative region can equivalently be written as
+\begin{equation}
+ \frac12<q<1,\qquad
+ 0<a<\frac{q(2q-1)}{2(q^2-q+1)}.
+ \label{eq:family_q_region}
+\end{equation}
+In particular, fixing $q=2/3$ fixes the evaluator throughout the family and
+reduces the condition to $0<a<1/7$:
+\begin{equation}
+ g_c^\top g_r=\frac{2a(1-a)^2(7a-1)}{81},\qquad
+ \lVert g_r\rVert^2=\frac{14a^2(1-a)^2}{81}.
+ \label{eq:family_fixed_q}
+\end{equation}
+The numerical example above corresponds to $a=.1$.
+
+The distinction between the base-policy family and the update coordinates is
+essential. Along the curve with $q$ fixed,
+$J_c(p(a))=J_r(p(a))=q+a(1-q)$, so both derivatives with respect to $a$
+are $1-q$. Equivalently,
+\[
+ \frac{dz^0}{da}=\left(\frac1a,-\frac1{1-a},-\frac1{1-a}\right),\qquad
+ g_c^\top\frac{dz^0}{da}=g_r^\top\frac{dz^0}{da}=1-q.
+\]
+The unfavorable direction in Eq.~\eqref{eq:family_fixed_q} is the ambient
+ordinary logit gradient, which need not be tangent to this calibrated curve.
+For example, it changes the low-score odds at rate
+$\dot{\log(p_2/p_3)}=(g_r)_2-(g_r)_3=-ad(2q-1)$.
+For the negative region, $q>1/2$, so those odds move against the correct
+low-score action even though the two low-score actions have identical
+predicted scores.
+
+\section{Connecting the family to SWE-RM's GSPO surrogate}
+\label{sec:gspo}
+
+\subsection{The initial derivative}
+SWE-RM uses group sequence policy optimization (GSPO), a sequence-normalized ratio, and standardized group advantages \citep[Appendix E.1, Eqs.~14--15, PDF pp.~20--21]{Shum2026SWE_RM}. For a group of $G$ trajectories from the behavior policy, write
+\begin{equation}
+\rho_i(\theta)=
+\left[\frac{\pi_\theta(\tau_i)}{\pi_{\rm old}(\tau_i)}\right]^{1/L_i},
+\qquad
+A_i=\frac{r_i-\bar r}{s_G},
+\label{eq:gsporatio}
+\end{equation}
+where $L_i$ is the positive trajectory-length factor in the source ratio,
+$\bar r=G^{-1}\sum_i r_i$, and $s_G$ is the group standard deviation. The clipped surrogate averages
+$\min\{\rho_i A_i,\operatorname{clip}(\rho_i,1-\varepsilon,1+\varepsilon)A_i\}$ over the group. At $\theta=\theta_{\rm old}$, the ratio is one and clipping is inactive for a clipping interval of positive width. Holding the sampled advantages and behavior policy fixed gives
+\begin{equation}
+\nabla_\theta\widehat J
+=\frac1G\sum_{i=1}^G\frac{A_i}{L_i}
+\nabla_\theta\log\pi_\theta(\tau_i).
+\label{eq:gspoinitial}
+\end{equation}
+The source reports no KL loss and uses 16 rollouts per problem. The calculation below concerns this initial surrogate derivative with no additional loss gradient; it does not assume a particular optimizer implementation.
+
+\subsection{Equal-length groups over the calibrated family}
+\label{sec:family_gspo}
+Use the family in Section~\ref{sec:calibration_family}, with $q=b/(1-a)$, one generated token per trajectory, and $G\geq2$ members sampled independently from the base policy. For this calculation let
+$A_i=(r_i-\bar r)/(s_G+\epsilon_s)$ with $\epsilon_s>0$.
+The source displays $s_G$ without specifying a stabilizer or the treatment of constant-score groups. The positive stabilizer used here makes those groups contribute zero without an undefined division.
+
+Let $N\sim\operatorname{Binomial}(G,a)$ count score-one samples, $u=N/G$, and $\Delta=1-q>0$. Take $t_G=1$ for population standard deviation or $t_G=\sqrt{G/(G-1)}$ for sample standard deviation. The high- and low-score centered rewards are $\Delta(1-u)$ and $-\Delta u$, with common denominator
+$t_G\Delta\sqrt{u(1-u)}+\epsilon_s$.
+Since group advantages sum to zero, the common $-p$ terms in the softmax scores $e_i-p$ cancel. Conditional on $N$, the low-score actions occur in expected proportions $q$ and $1-q$. Therefore
+\begin{align}
+\E[\widehat g\mid N]&=k(u)(1,-q,-(1-q)),\nonumber\\
+k(u)&=\frac{\Delta u(1-u)}{t_G\Delta\sqrt{u(1-u)}+\epsilon_s},\nonumber\\
+\E[\widehat g]&=K_{G,\epsilon_s}(a,q)(1,-q,-(1-q)),\label{eq:family_gspo_direction}\\
+K_{G,\epsilon_s}(a,q)&=\sum_{n=0}^G {G\choose n}a^n(1-a)^{G-n}k(n/G)>0.\nonumber
+\end{align}
+Here $\widehat g=\nabla_z\widehat J$. Strict positivity follows because $0<a<1$ and $G\geq2$ give positive probability to a mixed-score group. From Eq.~\eqref{eq:family_gradients},
+\begin{equation}
+\E[\widehat g]=\frac{K_{G,\epsilon_s}(a,q)}{ad}g_r.
+\label{eq:family_gspo_collinear}
+\end{equation}
+Standardization thus changes the magnitude, but not the initial expected logit direction, throughout this two-score family. In particular, for the fixed evaluator $q=2/3$,
+\begin{equation}
+g_c^\top\E[\widehat g]
+=\frac{2(1-a)(7a-1)}{27}K_{G,\epsilon_s}(a,2/3)<0
+\quad\text{if }0<a<1/7.
+\label{eq:family_gspo_fixed_q}
+\end{equation}
+
+Removing the standard-deviation divisor leaves $A_i=r_i-\bar r$. The self-included group mean gives
+\begin{equation}
+\E[\widehat g_{\rm centered}]=\frac{G-1}{G}g_r,
+\qquad
+\dot J_c=\frac{G-1}{G}g_c^\top g_r.
+\label{eq:sweno}
+\end{equation}
+Indeed, write $\bar r=(r_i+\sum_{j\ne i}r_j)/G$. Independence makes the other members' contribution to the expected score-function product zero, leaving the coefficient $(G-1)/G$. The entire strict negative region in Eq.~\eqref{eq:family_q_region} therefore persists after removing standardization.
+
+\paragraph{The original numerical example as a limit.}
+For $a=.1$, $q=2/3$, and population standard deviation, the limit $\epsilon_s\downarrow0$ gives
+\begin{equation}
+\kappa_G:=\lim_{\epsilon_s\downarrow0}K_{G,\epsilon_s}(.1,2/3)
+=\sum_{n=0}^G {G\choose n}(.1)^n(.9)^{G-n}
+\sqrt{\frac nG\left(1-\frac nG\right)}>0.
+\label{eq:kappa}
+\end{equation}
+Constant-score groups contribute zero in this limit. Equivalently, these numbers follow from zero advantages on such groups and population standardization on mixed groups; no division by zero is performed. The limiting derivatives are
+\begin{equation}
+\dot J_c=-.02\kappa_G<0,\qquad
+\dot J_r=\frac7{150}\kappa_G>0.
+\label{eq:gspodots}
+\end{equation}
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{rrrr}
+\toprule
+$G$ & $\kappa_G$ & Standardized-limit $\dot J_c$ & Centered-only $\dot J_c$\\
+\midrule
+2 & $.0900000000$ & $-.0018000000$ & $-.0003000$\\
+8 & $.2094920147$ & $-.0041898403$ & $-.0005250$\\
+16 & $.2563031126$ & $-.0051260623$ & $-.0005625$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Equal positive trajectory lengths add a common inverse-length factor to the update. Unequal lengths, nonindependent sampling, later clipped updates, or an additional loss gradient need not preserve the collinearity in Eq.~\eqref{eq:family_gspo_collinear}.
+
+\subsection{Optimizer and parameterization boundaries}
+\label{sec:family_coordinates}
+For a positive diagonal preconditioner
+$D=\diag(w_1,w_2,w_3)$, Eq.~\eqref{eq:family_dot} becomes
+\begin{equation}
+ g_c^\top Dg_r=\frac{ad^2}{m}
+ \left[w_1am-w_2b^2+w_3d(1-d)\right].
+ \label{eq:family_preconditioner}
+\end{equation}
+The sign is therefore not invariant under arbitrary parameter scaling.
+At the original point, $D=\diag(2,1,1)$ changes the derivative from
+$-.0006$ to $+.0003$.
+More generally, a local parametrization $z=z(\theta)$ with Jacobian $J$
+induces $JJ^\top g_r$ under an ordinary $\theta$-gradient step, giving success
+derivative $g_c^\top JJ^\top g_r$, not generally $g_c^\top g_r$.
+An orthonormal change of coordinates on the logit tangent space preserves
+the inner product; an arbitrary rescaling or neural-network parametrization
+does not.
+
+At every interior point, $g_r$ has signs $(+,-,-)$. Idealized first-step
+Adam applied to the full expected gradient with zero moments and negligible
+optimizer epsilon consequently gives success derivative
+$g_c^\top(1,-1,-1)=2ad>0$.
+At the original point this derivative is $.06$. This is not the expectation of stochastic Adam, since its nonlinear
+preconditioning does not commute with averaging.
+A fixed-score exponential tilt
+$p_\eta(i)\propto p_i\exp(\eta r_i)$ preserves the low-score conditional
+proportions and hence exact calibration. Its initial success derivative is
+\begin{equation}
+ \operatorname{Cov}_p(c,r)=\operatorname{Var}_p(r)
+ =a(1-a)(1-q)^2=\frac{ad^2}{1-a}>0.
+ \label{eq:family_tilt}
+\end{equation}
+At the original point the tilt derivative is $.01$. These alternatives delimit an ordinary logit-gradient
+claim; the family does not predict the actual optimizer trajectory of the
+source training system.
+
+\section{ProCredit: a score guarantee and its combined advantage}
+\label{sec:procredit}
+
+\subsection{Published score and credit rules}
+ProCredit defines progress $\Phi_t\in[0,1]$ as the fraction of executable task checks passed after turn $t$ \citep[Section 3, PDF pp.~5--6]{ma2026procredit}. To avoid confusing correctness with the source's progress coefficient $c$, we write that coefficient as $b>0$. With outcome $R\in\{0,1\}$,
+\begin{align}
+r_t&=b(\Phi_t-\Phi_{t-1}),\nonumber\\
+S&=R+\sum_{t=1}^T r_t=R+b(\Phi_T-\Phi_0).
+\label{eq:proscore}
+\end{align}
+For a common initial progress, bounded final progress, and $R=1\Rightarrow\Phi_T=1$, a sure-success policy attains the maximum possible expected score. Under its availability, the score-optimal and success-optimal policy sets coincide \citep[Appendix G, Proposition 3, PDF p.~23]{ma2026procredit}. This is a global statement about expected score, not every intermediate parameter update.
+
+The source standardizes trajectory scores within a task group and adds centered turn-level returns:
+\begin{align}
+A_i^{\rm traj}&=\frac{S_i-\bar S}{s_G(S)+\epsilon_s},\nonumber\\
+G_{i,t}^{(\gamma)}&=\gamma^{T_i-t}R_i+
+ \sum_{u=t}^{T_i}\gamma^{u-t}r_{i,u},\nonumber\\
+A_{i,t}^{\rm turn}&=G_{i,t}^{(\gamma)}-
+ \frac1{|\mathcal U|}\sum_{(j,u)\in\mathcal U}G_{j,u}^{(\gamma)},\nonumber\\
+A_{i,t}&=A_i^{\rm traj}+A_{i,t}^{\rm turn}.
+\label{eq:proadv}
+\end{align}
+Here $\mathcal U$ contains all turns of the sampled trajectories for the task. The source uses $\gamma=1$, so
+$G_{i,t}=R_i+b(\Phi_{i,T_i}-\Phi_{i,t-1})$.
+Its clipped token-ratio objective averages over generated action tokens and excludes tool responses (source Eq.~2); no KL or entropy term is used. Reported defaults are $G=8$ and $b=.5$ (Table I1, PDF p.~24).
+
+\subsection{One turn, one token, and exact pair enumeration}
+Consider ten initially unsatisfied task checks and one turn. Three one-token actions pass ten, one, or zero checks. Set
+\begin{equation}
+p=(.02,.75,.23),\quad c=(1,0,0),\quad
+\Phi_T=(1,.1,0),\quad\Phi_0=0,\quad b=.5.
+\end{equation}
+Then $S=(1.5,.05,0)$. The full categorical simplex contains a sure-success vertex that uniquely maximizes score. Finite softmax logits parameterize its interior; we evaluate the local update at $p$.
+
+With one turn per trajectory, $G_{i,1}=S_i$, and Eq.~\eqref{eq:proadv} reduces exactly to
+\begin{equation}
+A_i=\frac{S_i-\bar S}{s_G(S)+\epsilon_s}+(S_i-\bar S).
+\label{eq:proone}
+\end{equation}
+The source's token-mean objective is now the group mean. At the behavior policy, with inactive clipping and fixed sampled advantages, the gradient is $G^{-1}\sum_iA_i(e_i-p)$.
+
+For $G=2$, use population standard deviation, $\epsilon_s=0$, and zero advantage on ties. In an ordered pair $(i,j)$, define $d_{ij}=S_i-S_j$. Then
+\begin{equation}
+A_i=\sgn(d_{ij})+\frac{d_{ij}}2=-A_j,
+\qquad
+g^{(i,j)}=\frac{A_i}{2}(e_i-e_j).
+\end{equation}
+Summing the nine pairs with probabilities $p_ip_j$ gives
+\begin{equation}
+g_i=p_i\sum_jp_j\left[\sgn(S_i-S_j)+\frac{S_i-S_j}{2}\right].
+\end{equation}
+The resulting gradients are
+\begin{align}
+g_c&=(.0196,-.015,-.0046),\nonumber\\
+g_S&=(.02865,-.013125,-.015525),\nonumber\\
+g&=(.033925,.1509375,-.1848625).
+\end{align}
+Their directional products are
+\begin{align}
+g_c^\top g_S&=.00082983>0,\nonumber\\
+g_c^\top g&=-.000748765<0,\nonumber\\
+g_S^\top g&=.001860886875>0.
+\label{eq:prodots}
+\end{align}
+The raw-score gradient would improve success locally, but the expected combined-advantage direction reduces it while increasing mean score. The standardized trajectory term contributes $-.00116368$ to the success derivative; the centered turn term contributes $+.000414915$. The turn term mitigates the unfavorable standardized contribution. Both terms have the same sign within a pair; the reversal arises from their relative weighting across random groups.
+
+\paragraph{Relation to existing normalization analyses.}
+\citet{bereket2025uncalibrated} analyze overconfident probability prediction under proper scoring rewards; \citet{wang2026darkroom} studies amplification of policy-dependent prediction rewards in long-horizon agents. Both identify failures alleviated by removing standard-deviation normalization. The construction here fixes verified progress and examines ProCredit's specific advantage while preserving its global success-optimal policy set. It contrasts with Section~\ref{sec:calibration}, where mean centering leaves the unfavorable raw-gradient direction unchanged.
+
+\subsection{Default group size and removing standardization}
+For a group of size $G$, enumerate all count triples $n=(n_1,n_2,n_3)$ with $\sum_kn_k=G$. Their probabilities are
+\begin{equation}
+P(n)=\frac{G!}{n_1!n_2!n_3!}\prod_kp_k^{n_k}.
+\end{equation}
+For each triple, compute the mean, standard deviation, and advantages in Eq.~\eqref{eq:proone}, then accumulate
+\begin{equation}
+\E[g]=\sum_nP(n)\sum_k\frac{n_k}{G}A_k(n)(e_k-p).
+\label{eq:counts}
+\end{equation}
+There are $\binom{G+2}{2}$ triples: 45 at the source's default $G=8$. At $b=.5$ and $\epsilon_s=10^{-6}$, the success derivatives are
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+Standard-deviation convention & $g_c^\top\E[g]$, $G=8$\\
+\midrule
+Population & $-.000929983748$\\
+Sample & $-.000823033653$\\
+\bottomrule
+\end{tabular}
+\end{center}
+The displayed source formula contains $\epsilon_s$ but does not fix its value or an unambiguous training standard-deviation convention. These are explicit sensitivity calculations, not a reconstruction of every implementation detail.
+
+Removing the divisor from the trajectory term leaves two copies of $S_i-\bar S$. Exact mean-baseline enumeration gives
+\begin{equation}
+\E[g_{\rm no\,std}]=2\frac{G-1}{G}g_S.
+\label{eq:pronostd}
+\end{equation}
+The success derivative is positive for this construction: $.00082983$ at $G=2$ and $.0014522025$ at $G=8$. This intervention repairs the constructed ProCredit reversal, whereas Eq.~\eqref{eq:sweno} shows that it does not repair the calibrated SWE-RM family in Eq.~\eqref{eq:family_q_region}. For that two-score family, both standardized and centered credit are positive multiples of $g_r$ by Eqs.~\eqref{eq:family_gspo_collinear} and \eqref{eq:sweno}. Its mismatch is already present in the raw score; the ProCredit example instead acquires its unfavorable direction in the conversion to finite-group credit.
+
+For fixed positive $\epsilon_s$, the small score difference between the two failed actions vanishes as $b\to0$, and the direction becomes favorable again. In the fixed-score large-$G$ limit, Eq.~\eqref{eq:proone} yields
+$[1/(\sigma_S+\epsilon_s)+1]g_S$, also favorable here. The example therefore does not assert reversal at arbitrary group sizes or coefficients. It neither refutes ProCredit's global score-optimum proposition nor reproduces AppWorld or ToolSandbox training. One turn also removes temporal-discount effects from this calculation.
+
+\section{Reproduction}
+Both programs use the Python standard library and run independently.
+Run \texttt{python reproduce\_checks.py} in this folder to write \texttt{results.json}. It verifies:
+\begin{itemize}
+\item ARM-FM's two path returns and reversal thresholds;
+\item exact calibration, the conditional covariance, and the original ordinary-logit example;
+\item the GSPO limiting binomial expression against full count enumeration at $G=2,8,16$;
+\item ProCredit's nine ordered pairs against an independent count representation, the 45 states at $G=8$, and the no-standardization comparison.
+\end{itemize}
+Rational probabilities and nonstandardized expressions use Python's \texttt{Fraction}; standardized calculations use floating-point square roots. The output preserves the individual $G=8$ count states and their probabilities, so the reported expectation can be inspected without Monte Carlo uncertainty.
+
+Run \texttt{python} followed by \path{reproduce_calibration_family.py};
+the output is \path{reproduce_calibration_family.results.json}. This program checks the family identities using exact rational arithmetic at 1,200 base policies, the strict negative-region formula at 6,000 numerical points, and fixed-score ambient directional derivatives by 80 central finite differences. It independently enumerates multinomial count vectors in 128 GSPO cases with $G\in\{2,3,8,16\}$, population and sample standard deviations, and stabilizers $10^{-6}$ and $.05$, comparing the results with Eq.~\eqref{eq:family_gspo_direction}. It also checks the fixed-evaluator threshold, the slice root, a rectangle contained in the negative region, and the coordinate examples. These numerical points use the fixed seed \texttt{20261021}. The analytical derivation establishes the identities over their stated domains; finite checks corroborate it and do not estimate prevalence in trained systems. This program does not rerun the ProCredit construction.
+
+\bibliographystyle{plainnat}
+\begingroup
+\raggedright
+\bibliography{references}
+\endgroup
+\end{document}
